@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1017211168973-5kcuc3rotgn61fmog33dqupf3ad4jkqg.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1017211168973-5kcuc3rotgn61fmog33dqupf3ad4jkqg</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC_nGUDlek99dwZM3yd46n7wnzHdxs0-M4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1017211168973</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.vadvisorySmartboard</string>
+	<key>PROJECT_ID</key>
+	<string>vadvisory-smartboard</string>
+	<key>STORAGE_BUCKET</key>
+	<string>vadvisory-smartboard.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1017211168973:ios:abe969f216c24728b4e184</string>
+</dict>
+</plist>

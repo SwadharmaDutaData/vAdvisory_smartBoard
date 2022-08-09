@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1017211168973",
+    "project_id": "vadvisory-smartboard",
+    "storage_bucket": "vadvisory-smartboard.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1017211168973:android:5d101c80a712a4bdb4e184",
+        "android_client_info": {
+          "package_name": "com.example.vadvisory_smartboard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1017211168973-eioeirm7i9g15ofafuh157lkuv14v0hp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAk3fxAapbroX8u0x2gbaAmZuofbCKnoP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1017211168973-eioeirm7i9g15ofafuh157lkuv14v0hp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
