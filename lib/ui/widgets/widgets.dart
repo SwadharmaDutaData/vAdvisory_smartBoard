@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:vadvisory_smartboard/extensions/extensions.dart';
 import 'package:vadvisory_smartboard/models/models.dart';
 
 import '../../shared/shared.dart';

@@ -18,4 +18,14 @@ class AdvisoryCubit extends Cubit<AdvisoryState> {
       emit(AdvisoryLoadingFailed(result.message!));
     }
   }
+
+  Future<void> rateApp(String bookid, int rate) async {
+    ApiReturnValue<AdvisoryModel> result = await NotificationService.rateApp(bookid, rate,);
+
+    if (result.value != null) {
+      emit(AdvisoryLoaded(result.value!));
+    } else {
+      emit(AdvisoryLoadingFailed(result.message!));
+    }
+  }
 }

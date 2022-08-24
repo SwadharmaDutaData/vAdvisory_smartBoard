@@ -9,6 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:vadvisory_smartboard/cubits/advisory/advisory_cubit.dart';
 import 'package:vadvisory_smartboard/firebase_options.dart';
+import 'package:vadvisory_smartboard/screenutil/screenutil.dart';
 import 'package:vadvisory_smartboard/shared/shared.dart';
 import 'package:vadvisory_smartboard/ui/pages/pages.dart';
 
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init();
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => BookingCubit()),
@@ -72,7 +74,7 @@ class MyApp extends StatelessWidget {
         title: 'Virtual Advisory Smart Screen',
         home: (isRegistered == "false" || isRegistered == null)
             ? const DeviceRegistrationPage()
-            : const HomePage(),
+            : HomePage(),
         // const LoginPage(),
         // const WelcomePage(),
         theme: ThemeData(

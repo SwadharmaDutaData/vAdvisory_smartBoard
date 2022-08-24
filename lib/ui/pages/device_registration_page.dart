@@ -256,10 +256,10 @@ class _DeviceRegistrationPageState extends State<DeviceRegistrationPage> {
         setState(() {
           _isLoading = false;
         });
-        SharedDialog.successSnackBar(
-            SharedString.success,
-            'Perangkat berhasil didaftarkan');
-        log('toJson branch ${selectedBranch!.toJson()}');
+        Fluttertoast.showToast(
+            msg: 'Perangkat berhasil didaftarkan',
+            backgroundColor: statusOkColor,
+            gravity: ToastGravity.BOTTOM);
         Get.offAll(HomePage());
       } else {
         setState(() {
@@ -274,9 +274,7 @@ class _DeviceRegistrationPageState extends State<DeviceRegistrationPage> {
         _isLoading = false;
       });
       //connection
-      SharedDialog.errorSnackBar(
-          SharedString.failed,
-          SharedString.connectionFailed);
+      print(e);
     }
   }
 }

@@ -11,6 +11,7 @@ class DetailRmPage extends StatefulWidget {
 }
 
 class _DetailRmPageState extends State<DetailRmPage> {
+  double rating = 0;
   final serverText = TextEditingController();
   TextEditingController? roomText;
   TextEditingController? subjectText;
@@ -18,9 +19,9 @@ class _DetailRmPageState extends State<DetailRmPage> {
   MemoryImage? avatarUrl;
   TextEditingController? emailText;
   TextEditingController? iosAppBarRGBAColor; //transparent blue
-  bool? isAudioOnly = true;
-  bool? isAudioMuted = true;
-  bool? isVideoMuted = true;
+  bool? isAudioOnly = false;
+  bool? isAudioMuted = false;
+  bool? isVideoMuted = false;
 
   bool? _isLoading;
 
@@ -56,17 +57,17 @@ class _DetailRmPageState extends State<DetailRmPage> {
               children: [
                 Image.asset(
                   'assets/images/logo.png',
-                  height: size.height * 0.15,
+                  height: size.height.h.toDouble() * 0.12,
                 ),
-                const SizedBox(
-                  height: Sizes.dimen_16,
+                SizedBox(
+                  height: Sizes.dimen_16.h.toDouble(),
                 ),
                 SingleChildScrollView(
                   child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: Sizes.dimen_18, vertical: Sizes.dimen_24),
-                      margin: const EdgeInsets.symmetric(horizontal: defaultMargin),
+                      padding: EdgeInsets.symmetric(horizontal: Sizes.dimen_18.w.toDouble(), vertical: Sizes.dimen_18.h.toDouble()),
+                      margin: EdgeInsets.symmetric(horizontal: defaultMargin.w.toDouble()),
                       width: double.infinity,
-                      height: size.height * 0.55,
+                      height: size.height.h.toDouble() * 0.5,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(Sizes.dimen_8),
                         color: Colors.white70,
@@ -77,18 +78,18 @@ class _DetailRmPageState extends State<DetailRmPage> {
                               flex: 1,
                               child: widget.item!.imagedata != null
                                   ? Image.memory(imgByte)
-                                  : Image.asset('assets/images/avatar.jpg')),
-                          const SizedBox(width: Sizes.dimen_16,),
+                                  : Image.asset(SharedImage.avatar)),
+                          SizedBox(width: Sizes.dimen_16.w.toDouble(),),
                           Expanded(
                               flex: 2,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('${widget.item!.rmname}', style: primaryTextFont.copyWith(color: mainColor, fontSize: Sizes.dimen_24, fontWeight: FontWeight.w700),),
-                                  const SizedBox(height: Sizes.dimen_8,),
-                                  Text('RM ${widget.item!.mproduct!.productname}', style: primaryTextFont.copyWith(color: secondaryColor, fontSize: Sizes.dimen_18, fontWeight: FontWeight.w600),),
-                                  const SizedBox(height: Sizes.dimen_16,),
+                                  Text('${widget.item!.rmname}', style: primaryTextFont.copyWith(color: mainColor, fontSize: Sizes.dimen_36.sp.toDouble(), fontWeight: FontWeight.w700),),
+                                  SizedBox(height: Sizes.dimen_8.h.toDouble(),),
+                                  Text('RM ${widget.item!.mproduct!.productname}', style: primaryTextFont.copyWith(color: secondaryColor, fontSize: Sizes.dimen_24.sp.toDouble(), fontWeight: FontWeight.w600),),
+                                  SizedBox(height: Sizes.dimen_8.h.toDouble(),),
                                   Expanded(
                                     flex: 4,
                                     child: Row(
@@ -99,13 +100,13 @@ class _DetailRmPageState extends State<DetailRmPage> {
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text('E-mail', style: primaryTextFont.copyWith(color: Colors.black, fontSize: Sizes.dimen_16, fontWeight: FontWeight.w600),),
-                                              const SizedBox(height: Sizes.dimen_8,),
-                                              Text('No.Hp', style: primaryTextFont.copyWith(color: Colors.black, fontSize: Sizes.dimen_16, fontWeight: FontWeight.w600),),
-                                              const SizedBox(height: Sizes.dimen_8,),
-                                              Text('Cabang', style: primaryTextFont.copyWith(color: Colors.black, fontSize: Sizes.dimen_16, fontWeight: FontWeight.w600),),
-                                              const SizedBox(height: Sizes.dimen_8,),
-                                              Text('Alamat', style: primaryTextFont.copyWith(color: Colors.black, fontSize: Sizes.dimen_16, fontWeight: FontWeight.w600),),
+                                              Text('E-mail', style: primaryTextFont.copyWith(color: Colors.black, fontSize: Sizes.dimen_18.sp.toDouble(), fontWeight: FontWeight.w600),),
+                                              SizedBox(height: Sizes.dimen_8.h.toDouble(),),
+                                              Text('No.Hp', style: primaryTextFont.copyWith(color: Colors.black, fontSize: Sizes.dimen_18.sp.toDouble(), fontWeight: FontWeight.w600),),
+                                              SizedBox(height: Sizes.dimen_8.h.toDouble(),),
+                                              Text('Cabang', style: primaryTextFont.copyWith(color: Colors.black, fontSize: Sizes.dimen_18.sp.toDouble(), fontWeight: FontWeight.w600),),
+                                              SizedBox(height: Sizes.dimen_8.h.toDouble(),),
+                                              Text('Alamat', style: primaryTextFont.copyWith(color: Colors.black, fontSize: Sizes.dimen_18.sp.toDouble(), fontWeight: FontWeight.w600),),
                                             ],
                                           ),
                                         ),
@@ -114,13 +115,13 @@ class _DetailRmPageState extends State<DetailRmPage> {
                                           child: Column(
                                             crossAxisAlignment: CrossAxisAlignment.start,
                                             children: [
-                                              Text(': ${widget.item!.email}', style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_16, fontWeight: FontWeight.w600),),
-                                              const SizedBox(height: Sizes.dimen_8,),
-                                              Text(': ${widget.item!.nohp}', style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_16, fontWeight: FontWeight.w600),),
-                                              const SizedBox(height: Sizes.dimen_8,),
-                                              Text(': ${widget.item!.mbranch!.branchname}', style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_16, fontWeight: FontWeight.w600),),
-                                              const SizedBox(height: Sizes.dimen_8,),
-                                              Text(': ${widget.item!.mbranch!.branchaddress}', maxLines: 2, style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_16, fontWeight: FontWeight.w600),),
+                                              Text(': ${widget.item!.email}', style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_18.sp.toDouble(), fontWeight: FontWeight.w600),),
+                                              SizedBox(height: Sizes.dimen_8.h.toDouble(),),
+                                              Text(': ${widget.item!.nohp}', style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_18.sp.toDouble(), fontWeight: FontWeight.w600),),
+                                              SizedBox(height: Sizes.dimen_8.h.toDouble(),),
+                                              Text(': ${widget.item!.mbranch!.branchname}', style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_18.sp.toDouble(), fontWeight: FontWeight.w600),),
+                                              SizedBox(height: Sizes.dimen_8.h.toDouble(),),
+                                              Text(': ${widget.item!.mbranch!.branchaddress}', maxLines: 2, style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_18.sp.toDouble(), fontWeight: FontWeight.w600),),
                                             ],
                                           ),
                                         ),
@@ -130,6 +131,7 @@ class _DetailRmPageState extends State<DetailRmPage> {
                                   Expanded(
                                       flex: 2,
                                       child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           ElevatedButton(
@@ -140,9 +142,11 @@ class _DetailRmPageState extends State<DetailRmPage> {
                                                   .resolveWith((states) {
                                                 return Colors.white70;
                                               }),),
-                                            child: Text('Back', style: primaryTextFont.copyWith(fontSize: Sizes.dimen_18, color: mainColor, fontWeight: FontWeight.w600),),
+                                           child: Padding(
+                                              padding: EdgeInsets.all(Sizes.dimen_12.w.toDouble()),
+                                              child: Text('Back', style: primaryTextFont.copyWith(fontSize: Sizes.dimen_20.sp.toDouble(), color: mainColor, fontWeight: FontWeight.w600),),
+                                            ),
                                           ),
-                                          const SizedBox(width: Sizes.dimen_16,),
                                           _isLoading! ? smallLoadingIndicator :
                                           ElevatedButton(
                                             onPressed: () => _requestMeet(context),
@@ -152,7 +156,10 @@ class _DetailRmPageState extends State<DetailRmPage> {
                                                   .resolveWith((states) {
                                                 return secondaryColor;
                                               }),),
-                                            child: Text('Meet', style: primaryTextFont.copyWith(fontSize: Sizes.dimen_18, color: Colors.white, fontWeight: FontWeight.w600),),
+                                            child: Padding(
+                                              padding: EdgeInsets.all(Sizes.dimen_12.w.toDouble()),
+                                              child: Text('Meet', style: primaryTextFont.copyWith(fontSize: Sizes.dimen_20.sp.toDouble(), color: Colors.white, fontWeight: FontWeight.w600),),
+                                            ),
                                           ),
                                         ],
                                       )),
@@ -219,7 +226,7 @@ class _DetailRmPageState extends State<DetailRmPage> {
             debugPrint("${options.room} joined with message: $message");
           },
           onConferenceTerminated: (message) {
-            Get.offAll(HomePage());
+            _rateApp(context, roomText!.text);
             debugPrint("${options.room} terminated with message: $message");
           },
           genericListeners: [
@@ -238,14 +245,13 @@ class _DetailRmPageState extends State<DetailRmPage> {
     });
     try {
       await context.read<AdvisoryCubit>().postAdvisory(widget.link!.substring(20, 29), widget.item!, widget.customer!, widget.item!.mproduct!);
-      // await context.read<NotificationCubit>().pushNotification('Anda mendapatkan permintaan meet dari ${widget.customer!.custname!.capitalize}', widget.item!.rmname!.capitalize!, 'token');
+      await context.read<NotificationCubit>().pushNotification('Anda mendapatkan permintaan meet dari ${widget.customer!.custname!.capitalize}', widget.item!.rmname!.capitalize!, widget.item!.token!);
       AdvisoryState state = context.read<AdvisoryCubit>().state;
-      if (state is AdvisoryLoaded) {
+      NotificationState nstate = context.read<NotificationCubit>().state;
+      if (state is AdvisoryLoaded && nstate is NotificationLoaded) {
         setState(() {
           _isLoading = false;
         });
-        SharedDialog.successSnackBar(
-          SharedString.success, SharedString.success,);
         _joinMeeting();
       } else {
         setState(() {
@@ -258,5 +264,57 @@ class _DetailRmPageState extends State<DetailRmPage> {
       //connection
       SharedDialog.errorSnackBar(SharedString.failed, e.toString());
     }
+  }
+
+  Future<void> _rateApp(BuildContext context, String bookId) async {
+    Size size = MediaQuery.of(context).size;
+
+    await showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  "Bagaimana pertemuannya?\nBeri Kami Rating!",
+                  textAlign: TextAlign.center,
+                  style: primaryTextFont.copyWith(
+                      color: secondaryColor, fontWeight: FontWeight.w600, fontSize: Sizes.dimen_20.sp.toDouble()),
+                ),
+                SizedBox(height: Sizes.dimen_16.h.toDouble(),),
+                Center(
+                  child: RatingBar.builder(
+                    itemBuilder: (context, _) => Icon(Icons.star, color: Colors.amber, size: Sizes.dimen_20.sp.toDouble(),),
+                    onRatingUpdate: (rating) => setState(() {
+                      this.rating = rating;
+                    }),
+                  ),
+                ),
+                BottomButton(
+                    text: 'Selesai',
+                    onClick: () async {
+                      try {
+                        await context.read<AdvisoryCubit>().rateApp(bookId, rating.toInt());
+                        AdvisoryState state = context.read<AdvisoryCubit>().state;
+
+                        if (state is AdvisoryLoaded) {
+                          Get.offAll(HomePage(isDone: true,));
+                        } else {
+                          Fluttertoast.showToast(
+                              msg: "gagal rate",
+                              backgroundColor: errorColor,
+                              gravity: ToastGravity.TOP);
+                          Get.offAll(HomePage(isDone: true,));
+                        }
+                      } catch (e) {
+                        debugPrint('error $e');
+                      }
+                    })
+              ],
+            ),
+          );
+        });
   }
 }

@@ -10,7 +10,8 @@ class AdvisoryModel extends Equatable {
         this.meetend,
         this.meetdate,
         this.bookid,
-        this.meetstatus
+        this.meetstatus,
+        this.rate
       });
 
   final int? tadvisorypk;
@@ -22,6 +23,7 @@ class AdvisoryModel extends Equatable {
   final String? meetdate;
   final String? bookid;
   final int? meetstatus;
+  final int? rate;
 
   AdvisoryModel copyWith({
     int? tadvisorypk,
@@ -33,6 +35,7 @@ class AdvisoryModel extends Equatable {
     String? meetdate,
     String? bookid,
     int? meetstatus,
+    int? rate,
   }) =>
       AdvisoryModel(
           tadvisorypk: tadvisorypk ?? this.tadvisorypk,
@@ -43,7 +46,9 @@ class AdvisoryModel extends Equatable {
           meetend: meetend ?? this.meetend,
           meetdate: meetdate ?? this.meetdate,
           mproduct: mproduct ?? this.mproduct,
-          meetstatus: meetstatus ?? this.meetstatus);
+          meetstatus: meetstatus ?? this.meetstatus,
+        rate: rate ?? this.rate,
+      );
 
   factory AdvisoryModel.fromJson(Map<String, dynamic> json) => AdvisoryModel(
     tadvisorypk: json['tadvisorypk'] ?? 0,
@@ -61,6 +66,7 @@ class AdvisoryModel extends Equatable {
         ? ProductModel.fromJson(json["mproduct"])
         : null,
     meetstatus: json['meetstatus'] ?? 0,
+    rate: json['rate'] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {
@@ -73,6 +79,7 @@ class AdvisoryModel extends Equatable {
     "mrm": mrm,
     "mproduct": mproduct,
     "meetstatus": meetstatus,
+    "rate": rate,
   };
 
   @override
@@ -86,6 +93,7 @@ class AdvisoryModel extends Equatable {
     mrm,
     mcust,
     mproduct,
-    meetstatus
+    meetstatus,
+    rate,
   ];
 }

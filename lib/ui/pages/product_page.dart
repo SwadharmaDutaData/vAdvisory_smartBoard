@@ -24,235 +24,207 @@ class _ProductPageState extends State<ProductPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         body: Container(
-          padding: EdgeInsets.all(Sizes.dimen_24),
+          padding: EdgeInsets.all(Sizes.dimen_24.w.toDouble()),
           width: double.infinity,
           height: size.height,
           decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage(SharedImage.background),
                   fit: BoxFit.cover)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(
-                        'assets/images/logo.png',
-                        height: size.height * 0.15,
-                      ),
-                      const SizedBox(
-                        height: Sizes.dimen_16,
-                      ),
-                      Text(
-                        'Virtual Advisory',
-                        style: primaryTextFont.copyWith(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700,
-                            fontSize: Sizes.dimen_24),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Row(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Text(
-                                widget.customer!.custname!.capitalize!,
-                                textAlign: TextAlign.end,
-                                style: primaryTextFont.copyWith(
-                                    color: mainColor,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: Sizes.dimen_24),
-                              ),
-                              Text(
-                                'Nasabah Prioritas',
-                                textAlign: TextAlign.end,
-                                style: primaryTextFont.copyWith(
-                                    color: darkGrey, fontSize: Sizes.dimen_18),
-                              ),
-                            ],
+                          Image.asset(
+                            'assets/images/logo.png',
+                            height: size.height.h.toDouble() * 0.1,
                           ),
-                          const SizedBox(
-                            width: Sizes.dimen_8,
+                          SizedBox(
+                            height: Sizes.dimen_16.h.toDouble(),
                           ),
-                          CircleAvatar(
-                            backgroundImage: widget.customer!.imagedata != ''
-                                ? MemoryImage(imgByte)
-                                : const AssetImage('assets/images/avatar.jpg')
-                                    as ImageProvider,
-                            radius: size.height * 0.05,
-                          )
+                          Text(
+                            'Daftar Produk Tersedia :',
+                            style: primaryTextFont.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700,
+                                fontSize: Sizes.dimen_24.sp.toDouble()),
+                          ),
                         ],
                       ),
-                      const SizedBox(
-                        height: Sizes.dimen_8,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          showSearch(
-                              context: context,
-                              delegate: ItemSearchDelegate(
-                                  customer: widget.advisoryDetail!.mcust!,
-                                  item: widget.advisoryDetail,
-                                  productList:
-                                      widget.advisoryDetail!.mproductList));
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: Sizes.dimen_24,
-                              vertical: Sizes.dimen_8),
-                          decoration: const BoxDecoration(
-                              color: Colors.white60,
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(Sizes.dimen_12),
-                                bottomLeft: Radius.circular(Sizes.dimen_12),
-                              )),
-                          child: Row(
+                    ),
+                    SizedBox(width: Sizes.dimen_8.w.toDouble(),),
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Row(
                             children: [
-                              Text(
-                                SharedString.searchProduct,
-                                style: primaryTextFont.copyWith(
-                                  fontSize: Sizes.dimen_18,
-                                    color: secondaryColor,
-                                    fontWeight: FontWeight.w700),
+                              Expanded(
+                                flex: 3,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    AutoSizeText(
+                                      widget.customer!.custname!.capitalize!,
+                                      presetFontSizes: [Sizes.dimen_24.sp.toDouble(), Sizes.dimen_18.sp.toDouble(), Sizes.dimen_16.sp.toDouble()],
+                                      maxLines: 2,
+                                      textAlign: TextAlign.end,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: primaryTextFont.copyWith(
+                                          color: mainColor,
+                                          fontWeight: FontWeight.w600,),
+                                    ),
+                                    Text(
+                                      'Nasabah Prioritas',
+                                      textAlign: TextAlign.end,
+                                      style: primaryTextFont.copyWith(
+                                          color: darkGrey,
+                                          fontSize: Sizes.dimen_16.sp.toDouble()),
+                                    ),
+                                  ],
+                                ),
                               ),
-                              const SizedBox(
-                                width: Sizes.dimen_8,
+                              SizedBox(
+                                width: Sizes.dimen_16.w.toDouble(),
                               ),
-                              Icon(
-                                Icons.search,
-                                size: MediaQuery.of(context).size.height * 0.04,
-                                color: secondaryColor,
-                              ),
+                              Expanded(
+                                flex: 1,
+                                child: CircleAvatar(
+                                  backgroundColor: widget.customer!.imagedata != '' ? Colors.white : borderGrey,
+                                  backgroundImage: widget.customer!.imagedata != ''
+                                      ? MemoryImage(imgByte)
+                                      : const AssetImage(SharedImage.avatar)
+                                          as ImageProvider,
+                                  radius: size.height.h.toDouble() * 0.04,
+                                ),
+                              )
                             ],
                           ),
-                        ),
+                          SizedBox(
+                            height: Sizes.dimen_8.h.toDouble(),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              showSearch(
+                                  context: context,
+                                  delegate: ItemSearchDelegate(
+                                      customer: widget.advisoryDetail!.mcust!,
+                                      item: widget.advisoryDetail,
+                                      productList:
+                                          widget.advisoryDetail!.mproductList));
+                            },
+                            child: Container(
+                              width: size.width * 0.13,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: Sizes.dimen_24.w.toDouble(),
+                                  vertical: Sizes.dimen_8.h.toDouble()),
+                              decoration: const BoxDecoration(
+                                  color: Colors.white60,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(Sizes.dimen_12),
+                                    bottomLeft: Radius.circular(Sizes.dimen_12),
+                                  )),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    SharedString.searchProduct,
+                                    style: primaryTextFont.copyWith(
+                                        fontSize: Sizes.dimen_14.sp.toDouble(),
+                                        color: secondaryColor,
+                                        fontWeight: FontWeight.w700),
+                                  ),
+                                  SizedBox(
+                                    width: Sizes.dimen_8.w.toDouble(),
+                                  ),
+                                  Icon(
+                                    Icons.search,
+                                    size: MediaQuery.of(context)
+                                            .size
+                                            .height
+                                            .h
+                                            .toDouble() *
+                                        0.03,
+                                    color: secondaryColor,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: Sizes.dimen_16,
-              ),
-              Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: Sizes.dimen_8),
-                  width: double.infinity,
-                  height: size.height * 0.55,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(Sizes.dimen_8),
-                    color: Colors.black45,
-                  ),
-                  child:
-                  Center(
-                    child: ListView(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      children: List.generate(
-                          widget.advisoryDetail!.mproductList!.length, (index) {
-                        return widget.advisoryDetail!.mproductList!.isNotEmpty
-                            ? ProductCardWidget(
-                                onClick: () async {
-                                  try {
-                                    await context.read<RmCubit>().getRmById(
-                                        widget.advisoryDetail!
-                                            .mproductList![index].mproductpk!);
-                                    RmState state =
-                                        context.read<RmCubit>().state;
-                                    if (state is RmLoaded) {
-                                      Get.to(ProductDetailPage(
-                                        productName: widget.advisoryDetail!
-                                            .mproductList![index].productname!,
-                                        item: widget.advisoryDetail!,
-                                        customer: widget.advisoryDetail!.mcust,
-                                        productDesc: widget.advisoryDetail!
-                                            .mproductList![index].productdesc!,
-                                        rmList: state.rmList,
-                                        productPk: widget.advisoryDetail!
-                                            .mproductList![index].mproductpk,
-                                      ));
-                                    } else {
-                                      print('rm failed');
-                                    }
-                                  } catch (e) {
-                                    //connection
-                                    SharedDialog.errorSnackBar(
-                                        SharedString.failed, e.toString());
-                                  }
-                                },
-                                item:
-                                    widget.advisoryDetail!.mproductList![index])
-                            : Center(
-                                child: Text(
-                                  'No Data',
-                                  style: primaryTextFont.copyWith(
-                                      color: Colors.white),
-                                ),
-                              );
-                      }),
                     ),
-                  )
-
-
-                  // Padding(
-                  //     padding: const EdgeInsets.all(Sizes.dimen_16),
-                  //     child: widget.advisoryDetail!.mproductList!.isNotEmpty
-                  //     ?
-                  //     GridView.count(
-                  //         mainAxisSpacing: Sizes.dimen_32,
-                  //         crossAxisSpacing: Sizes.dimen_16,
-                  //         scrollDirection: Axis.horizontal,
-                  //         crossAxisCount: 2,
-                  //         children: List.generate (
-                  //             widget.advisoryDetail!.mproductList!.length, (index) {
-                  //           return ProductCardWidget(
-                  //               onClick: () async{
-                  //                 try {
-                  //                   await context.read<RmCubit>().getRmById(widget.advisoryDetail!.mproductList![index].mproductpk!);
-                  //                   RmState state = context.read<RmCubit>().state;
-                  //                   if (state is RmLoaded){
-                  //                     Get.to(
-                  //                         ProductDetailPage(
-                  //                                 productName: widget.advisoryDetail!.mproductList![index]
-                  //                                     .productname!,
-                  //                                 item: widget.advisoryDetail!,
-                  //                                 customer: widget.advisoryDetail!.mcust,
-                  //                                 productDesc: widget.advisoryDetail!.mproductList![index]
-                  //                                     .productdesc!,
-                  //                                 rmList: state.rmList,
-                  //                           productPk: widget.advisoryDetail!.mproductList![index].mproductpk,
-                  //                               )
-                  //                     );
-                  //                   } else {
-                  //                     print('rm failed');
-                  //                   }
-                  //                 } catch (e) {
-                  //                   //connection
-                  //                   SharedDialog.errorSnackBar(SharedString.failed, e.toString());
-                  //                 }
-                  //               },
-                  //               item: widget.advisoryDetail!.mproductList![index]);
-                  //         }),
-                  //       )
-                  //         : Center(
-                  //       child: Text(
-                  //         'No Data',
-                  //         style: primaryTextFont.copyWith(
-                  //             color: Colors.white),
-                  //       ),
-                  //     )
-                  // ),
-                  )
-            ],
+                  ],
+                ),
+                SizedBox(
+                  height: Sizes.dimen_16.h.toDouble(),
+                ),
+                Container(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: Sizes.dimen_8.w.toDouble()),
+                    width: double.infinity,
+                    height: size.height.h.toDouble() * 0.45,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(Sizes.dimen_8),
+                      color: Colors.black45,
+                    ),
+                    child: Center(
+                      child: ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        children: List.generate(
+                            widget.advisoryDetail!.mproductList!.length, (index) {
+                          return widget.advisoryDetail!.mproductList!.isNotEmpty
+                              ? ProductCardWidget(
+                                  onClick: () async {
+                                    try {
+                                      await context.read<RmCubit>().getRmById(
+                                          widget.advisoryDetail!
+                                              .mproductList![index].mproductpk!);
+                                      RmState state =
+                                          context.read<RmCubit>().state;
+                                      if (state is RmLoaded) {
+                                        Get.to(ProductDetailPage(
+                                          productName: widget.advisoryDetail!
+                                              .mproductList![index].productname!,
+                                          item: widget.advisoryDetail!,
+                                          customer: widget.advisoryDetail!.mcust,
+                                          productDesc: widget.advisoryDetail!
+                                              .mproductList![index].productdesc!,
+                                          rmList: state.rmList,
+                                          productPk: widget.advisoryDetail!
+                                              .mproductList![index].mproductpk,
+                                        ));
+                                      } else {
+                                        print('rm failed');
+                                      }
+                                    } catch (e) {
+                                      //connection
+                                      print(e);
+                                    }
+                                  },
+                                  item:
+                                      widget.advisoryDetail!.mproductList![index])
+                              : Center(
+                                  child: Text(
+                                    'No Data',
+                                    style: primaryTextFont.copyWith(
+                                        color: Colors.white),
+                                  ),
+                                );
+                        }),
+                      ),
+                    ))
+              ],
+            ),
           ),
         ),
       ),
@@ -288,21 +260,25 @@ class ItemSearchDelegate extends SearchDelegate {
       onPressed: () => close(context, null), icon: Icon(Icons.arrow_back));
 
   @override
-  Widget buildResults(BuildContext context) => Center(
-        child: Text(
-          query,
-          style: primaryTextFont,
-        ),
-      );
+  Widget buildResults(BuildContext context) => Center();
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<ProductModel> list = productList!.where((searchResult) {
-      final result = searchResult.toString();
-      final input = query.toLowerCase();
-
-      return result.contains(input);
+    List<ProductModel> list;
+    final matching = productList!.where((station) {
+      return station.productname!.toLowerCase() == query.toLowerCase();
     }).toList();
+    print('${matching.length}');
+    if (matching.length > 0) {
+      list = matching;
+    } else {
+      list = productList!.where((station) {
+        return station.productname!
+                .toLowerCase()
+                .contains(query.toLowerCase()) ||
+            station.productname!.toLowerCase().contains(query.toLowerCase());
+      }).toList();
+    }
 
     return ListView.builder(
         itemCount: list.length,
@@ -316,19 +292,17 @@ class ItemSearchDelegate extends SearchDelegate {
             leading: productIcon != ''
                 ? Image.memory(
                     imgByte,
-                    height: Sizes.dimen_24,
+                    height: Sizes.dimen_24.h.toDouble(),
                   )
                 : Image.asset(
                     'assets/images/produk_bni.png',
-                    height: Sizes.dimen_24,
+                    height: Sizes.dimen_24.h.toDouble(),
                   ),
             title: Text(
               productName,
-              style: primaryTextFont.copyWith(color: darkGrey),
+              style: primaryTextFont.copyWith(
+                  fontSize: Sizes.dimen_14.sp.toDouble(), color: darkGrey),
             ),
-            // shape: RoundedRectangleBorder(
-            //   side: BorderSide(color: secondaryColor, width: 0.3),
-            // ),
             onTap: () async {
               await context
                   .read<RmCubit>()

@@ -19,8 +19,8 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
     return GestureDetector(
       onTap: widget.onClick,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(
-            Sizes.dimen_8, Sizes.dimen_16, Sizes.dimen_8, Sizes.dimen_16),
+        padding: EdgeInsets.fromLTRB(
+            Sizes.dimen_8.w.toDouble(), Sizes.dimen_16.h.toDouble(), Sizes.dimen_8.w.toDouble(), Sizes.dimen_16),
         child: Material(
           elevation: 3,
           shadowColor: thirdColor,
@@ -29,93 +29,33 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
               width: size.width * 0.2,
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(8)),
+                  borderRadius: BorderRadius.circular(Sizes.dimen_8)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(
-                    flex: 3,
-                    child:
                     widget.item.icon != ''
                         ? Center(
-                      child: Image.memory(imgByte, height: size.height * 0.2,)
+                      child: Image.memory(imgByte, height: size.height.h.toDouble() * 0.2,)
                       )
-                      // Container(
-                      //   decoration: BoxDecoration(
-                      //       image: DecorationImage(
-                      //           image: MemoryImage(imgByte),
-                      //         scale: 0.1
-                      //       ),
-                      //   ),
-                      // ),
-                     : Center(child: Image.asset('assets/images/produk_bni.png', height: size.height * 0.2,),)
+                     : Center(child: Image.asset('assets/images/produk_bni.png', height: size.height.h.toDouble() * 0.2,),),
+                  SizedBox(
+                    height: Sizes.dimen_10.h.toDouble(),
                   ),
-                  const SizedBox(
-                    height: Sizes.dimen_10,
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: Text(
+                  Text(
                       widget.item.productname!.toUpperCase(),
                       textAlign: TextAlign.center,
                       style: primaryTextFont.copyWith(
                           color: widget.item != 0
-                              ? thirdColor
+                              ? secondaryColor
                               : deepGrey,
-                          fontSize: Sizes.dimen_24,
+                          fontSize: Sizes.dimen_24.sp.toDouble(),
                           fontWeight: FontWeight.bold),
                     ),
-                  ),
                 ],
               )),
         ),
       ),
-
-
-      // Material(
-      //   elevation: 3,
-      //   shadowColor: Colors.black,
-      //   borderRadius: BorderRadius.circular(8),
-      //   child: Container(
-      //       padding: const EdgeInsets.all(Sizes.dimen_4),
-      //       width: double.infinity,
-      //       height: 120,
-      //       decoration: BoxDecoration(
-      //           color: Colors.white, borderRadius: BorderRadius.circular(8)),
-      //       child: Column(
-      //         mainAxisAlignment: MainAxisAlignment.center,
-      //         children: [
-      //           ///icon
-      //           Expanded(
-      //             flex: 4,
-      //             child: widget.item.icon != ''
-      //               ? Image.memory(
-      //             imgByte,
-      //             height: size.height * 0.1,
-      //           )
-      //               : Image.asset(
-      //             'assets/images/produk_bni.png',
-      //             height: size.height * 0.1,
-      //           ),),
-      //           const SizedBox(
-      //             height: Sizes.dimen_16,
-      //           ),
-      //           ///name
-      //           Expanded(
-      //             flex: 1,
-      //             child: AutoSizeText(
-      //               widget.item.productname!.toUpperCase(),
-      //               maxLines: 2,
-      //               presetFontSizes: [Sizes.dimen_12, Sizes.dimen_10, Sizes.dimen_8],
-      //               textAlign: TextAlign.center,
-      //               style: primaryTextFont.copyWith(
-      //                   color: darkGrey,
-      //                   fontWeight: FontWeight.bold),
-      //             ),
-      //           ),
-      //         ],
-      //       )),
-      // ),
     );
   }
 }

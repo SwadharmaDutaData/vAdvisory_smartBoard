@@ -16,7 +16,7 @@ class _BottomButtonState extends State<BottomButton> {
   Widget build(BuildContext context) {
     bool isLoading = widget.loading!;
     return Padding(
-      padding: const EdgeInsets.all(Sizes.dimen_16),
+      padding: EdgeInsets.symmetric(vertical: Sizes.dimen_12.h.toDouble(), horizontal: Sizes.dimen_12.h.toDouble()),
       child: SizedBox(
         width: double.infinity,
         height: Sizes.dimen_48,
@@ -29,7 +29,7 @@ class _BottomButtonState extends State<BottomButton> {
           ),
           child: isLoading? loadingIndicator : Text(
             widget.text,
-            style: primaryTextFont.copyWith(color: Colors.white, fontSize: Sizes.dimen_14),
+            style: primaryTextFont.copyWith(color: Colors.white, fontSize: Sizes.dimen_20.sp.toDouble()),
           ),
         ),
       ),

@@ -30,6 +30,7 @@ class SharedString {
   static const String region = "Wilayah";
   static const String branch = "Cabang";
   static const String nobranch = "Tidak ada cabang";
+  static const String thanks = "Terima Kasih";
   static const String date = "Tanggal";
 
   ///snackbar messages

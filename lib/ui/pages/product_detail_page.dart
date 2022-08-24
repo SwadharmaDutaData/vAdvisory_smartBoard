@@ -52,190 +52,211 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
       child: Scaffold(
         resizeToAvoidBottomInset: true,
         body: Container(
-          padding: EdgeInsets.all(Sizes.dimen_24),
+          padding: EdgeInsets.all(Sizes.dimen_24.w.toDouble()),
             width: double.infinity,
             height: size.height,
             decoration: const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(SharedImage.background),
                     fit: BoxFit.cover)),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Image.asset(
-                            'assets/images/logo.png',
-                            height: size.height * 0.15,
-                          ),
-                          SizedBox(height: Sizes.dimen_8,),
-                          Text(
-                            'PRODUK ${widget.productName!}',
-                            style: primaryTextFont.copyWith(
-                                color: mainColor,
-                                fontWeight: FontWeight.w700,
-                                fontSize: Sizes.dimen_18),
-                          ),
-                          SizedBox(height: Sizes.dimen_8,),
-                          Text(
-                            'Deskripsi produk : ${widget.productDesc!.capitalize}',
-                            style: primaryTextFont.copyWith(fontSize: Sizes.dimen_16),
-                          )
-                        ],
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Row(
+            child: SingleChildScrollView(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    widget.customer!.custname!.capitalize!,
-                                    textAlign: TextAlign.end,
-                                    style: primaryTextFont.copyWith(
-                                        color: mainColor,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: Sizes.dimen_24),
-                                  ),
-                                  Text(
-                                    'Nasabah Prioritas',
-                                    textAlign: TextAlign.end,
-                                    style: primaryTextFont.copyWith(
-                                        color: darkGrey, fontSize: Sizes.dimen_18),
-                                  ),
-                                ],
+                              Image.asset(
+                                'assets/images/logo.png',
+                                height: size.height.h.toDouble() * 0.1,
                               ),
-                              const SizedBox(
-                                width: Sizes.dimen_8,
+                              SizedBox(height: Sizes.dimen_8.h.toDouble(),),
+                              Text(
+                                'PRODUK ${widget.productName!}',
+                                style: primaryTextFont.copyWith(
+                                    color: mainColor,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: Sizes.dimen_22.sp.toDouble()),
                               ),
-                              CircleAvatar(
-                                backgroundImage: widget.customer!.imagedata != ''
-                                    ? MemoryImage(imgByte)
-                                    : const AssetImage('assets/images/avatar.jpg')
-                                as ImageProvider,
-                                radius: size.height * 0.05,
+                              SizedBox(height: Sizes.dimen_8.h.toDouble(),),
+                              Text(
+                                'Deskripsi produk : ${widget.productDesc!.capitalizeFirst}',
+                                style: primaryTextFont.copyWith(fontSize: Sizes.dimen_16.sp.toDouble()),
                               )
                             ],
                           ),
-                          const SizedBox(
-                            height: Sizes.dimen_8,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              showSearch(
-                                  context: context,
-                                  delegate: _ItemSearchDelegate(
-                                      customer: widget.customer,
-                                      link: widget.item!.link,
-                                  rmList: widget.rmList));
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: Sizes.dimen_16,
-                                  vertical: Sizes.dimen_8),
-                              decoration: const BoxDecoration(
-                                  color: Colors.white60,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(Sizes.dimen_12),
-                                    bottomLeft: Radius.circular(Sizes.dimen_12),
-                                  )),
-                              child: Row(
+                        ),
+                        SizedBox(width: Sizes.dimen_8.w.toDouble(),),
+                        Expanded(
+                          flex: 1,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              Row(
                                 children: [
-                                  Text(
-                                    SharedString.searchRm,
-                                    style: primaryTextFont.copyWith(
-                                        color: secondaryColor,
-                                        fontWeight: FontWeight.w700),
+                                  Expanded(
+                                    flex: 3,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      children: [
+                                        AutoSizeText(
+                                          widget.customer!.custname!.capitalize!,
+                                          presetFontSizes: [Sizes.dimen_24.sp.toDouble(), Sizes.dimen_18.sp.toDouble(), Sizes.dimen_16.sp.toDouble()],
+                                          maxLines: 2,
+                                          textAlign: TextAlign.end,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: primaryTextFont.copyWith(
+                                              color: mainColor,
+                                              fontWeight: FontWeight.w600,),
+                                        ),
+                                        Text(
+                                          'Nasabah Prioritas',
+                                          textAlign: TextAlign.end,
+                                          style: primaryTextFont.copyWith(
+                                              color: darkGrey, fontSize: Sizes.dimen_16.sp.toDouble()),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  const SizedBox(
-                                    width: Sizes.dimen_16,
+                                  SizedBox(
+                                    width: Sizes.dimen_16.w.toDouble(),
                                   ),
-                                  Icon(
-                                    Icons.search,
-                                    size: MediaQuery.of(context).size.height *
-                                        0.05,
-                                    color: secondaryColor,
-                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: CircleAvatar(
+                                      backgroundColor: widget.customer!.imagedata != '' ? Colors.white : borderGrey,
+                                      backgroundImage: widget.customer!.imagedata != ''
+                                          ? MemoryImage(imgByte)
+                                          : const AssetImage(SharedImage.avatar)
+                                      as ImageProvider,
+                                      radius: size.height.h.toDouble() * 0.04,
+                                    ),
+                                  )
                                 ],
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: Sizes.dimen_16,
-                  ),
-                  Container(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: Sizes.dimen_8),
-                      width: double.infinity,
-                      height: size.height * 0.55,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(Sizes.dimen_8),
-                        color: Colors.black45,
-                      ),
-                      child:
-                      StreamBuilder(
-                        initialData: widget.rmList,
-                        stream: refreshStatus(),
-                        builder: (context, snapshot){
-                          if (snapshot.hasError) {
-                            return const Center(child: Text('Some error occurred!'));
-                          } else {
-                            return
-                              Center(
-                              child: ListView(
-                                shrinkWrap: true,
-                                scrollDirection: Axis.horizontal,
-                                children: List.generate(widget.rmList!.length, (index) {
-                                  return widget.rmList!.isNotEmpty
-                                      ? InkWell(
-                                          onTap: widget.rmList![index].rmstatus == 1
-                                            ?  () {
-                                            Get.to(DetailRmPage(
-                                                item: widget.rmList![index],
-                                                link: widget.item!.link.toString(),
-                                                customer: widget.customer));
-                                          } : () {},
-                                          child: RmCardWidget(
-                                            item: widget.rmList![index],
-                                          ),
-                                        )
-                                      : Center(
-                                          child: Text(
-                                            'No Data',
-                                            style: primaryTextFont.copyWith(
-                                                color: Colors.white),
-                                          ),
-                                        );
-                                }),
+                              SizedBox(
+                                height: Sizes.dimen_8.h.toDouble(),
                               ),
-                            );
-                          }
-                        },
-                      )
+                              InkWell(
+                                onTap: () {
+                                  showSearch(
+                                      context: context,
+                                      delegate: _ItemSearchDelegate(
+                                          customer: widget.customer,
+                                          link: widget.item!.link,
+                                      rmList: widget.rmList));
+                                },
+                                child: Container(
+                                  width: size.width * 0.13,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: Sizes.dimen_16.w.toDouble(),
+                                      vertical: Sizes.dimen_8.h.toDouble()),
+                                  decoration: const BoxDecoration(
+                                      color: Colors.white60,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(Sizes.dimen_12),
+                                        bottomLeft: Radius.circular(Sizes.dimen_12),
+                                      )),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        SharedString.searchRm,
+                                        style: primaryTextFont.copyWith(
+                                          fontSize: Sizes.dimen_14.sp.toDouble(),
+                                            color: secondaryColor,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                      SizedBox(
+                                        width: Sizes.dimen_8.w.toDouble(),
+                                      ),
+                                      Icon(
+                                        Icons.search,
+                                        size: MediaQuery.of(context).size.height.h.toDouble() *
+                                            0.03,
+                                        color: secondaryColor,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: Sizes.dimen_16.h.toDouble(),
+                    ),
+                    Container(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: Sizes.dimen_8.w.toDouble()),
+                        width: double.infinity,
+                        height: size.height.h.toDouble() * 0.43,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(Sizes.dimen_8),
+                          color: Colors.black45,
+                        ),
+                        child:
+                        StreamBuilder(
+                          initialData: widget.rmList,
+                          stream: refreshStatus(),
+                          builder: (context, snapshot){
+                            if (snapshot.hasError) {
+                              return const Center(child: Text('Some error occurred!'));
+                            } else {
+                              return
+                                Center(
+                                child: ListView(
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.horizontal,
+                                  children: List.generate(widget.rmList!.length, (index) {
+                                    return widget.rmList!.isNotEmpty
+                                        ? InkWell(
+                                            onTap: widget.rmList![index].rmstatus == 1
+                                              ?  () {
+                                              Get.to(DetailRmPage(
+                                                  item: widget.rmList![index],
+                                                  link: widget.item!.link.toString(),
+                                                  customer: widget.customer));
+                                            } : () {},
+                                            child: RmCardWidget(
+                                              item: widget.rmList![index],
+                                            ),
+                                          )
+                                        : Center(
+                                            child: Text(
+                                              'No Data',
+                                              style: primaryTextFont.copyWith(
+                                                  color: Colors.white),
+                                            ),
+                                          );
+                                  }),
+                                ),
+                              );
+                            }
+                          },
+                        )
 
-                      ),
-                  ElevatedButton(
-                    onPressed: () => Get.back(),
-                    style: ButtonStyle(
-                      backgroundColor:
-                      MaterialStateProperty
-                          .resolveWith((states) {
-                        return Colors.white70;
-                      }),),
-                    child: Text('Back', style: primaryTextFont.copyWith(fontSize: Sizes.dimen_18, color: mainColor, fontWeight: FontWeight.w600),),
-                  ),
-                ],
-              ),
+                        ),
+                    SizedBox(height: Sizes.dimen_8.h.toDouble(),),
+                    ElevatedButton(
+                      onPressed: () => Get.back(),
+                      style: ButtonStyle(
+                        backgroundColor:
+                        MaterialStateProperty
+                            .resolveWith((states) {
+                          return Colors.white70;
+                        }),),
+                      child: Padding(padding: EdgeInsets.symmetric(vertical: Sizes.dimen_12.h.toDouble(), horizontal: Sizes.dimen_12.w.toDouble()),child: Text('Back', style: primaryTextFont.copyWith(fontSize: Sizes.dimen_24.sp.toDouble(), color: mainColor, fontWeight: FontWeight.w600),)),
+                    ),
+                  ],
+                ),
+            ),
             ),
       ),
     );
@@ -267,7 +288,7 @@ class _ItemSearchDelegate extends SearchDelegate {
 
   @override
   Widget? buildLeading(BuildContext context) => IconButton(
-      onPressed: () => close(context, null), icon: Icon(Icons.arrow_back));
+      onPressed: () => close(context, null), icon: Icon(Icons.arrow_back, size: defaultMargin,));
 
   @override
   Widget buildResults(BuildContext context) => Center(
@@ -294,22 +315,22 @@ class _ItemSearchDelegate extends SearchDelegate {
           return ListTile(
             leading: Image.asset(
               'assets/images/rm_icon.png',
-              height: Sizes.dimen_24,
+              height: Sizes.dimen_24.h.toDouble(),
               color: secondaryColor,
             ),
             title: Text(
               rmName,
-              style: primaryTextFont.copyWith(color: darkGrey),
+              style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_14.sp.toDouble()),
             ),
             subtitle:
             Row(
               children: [
-                Icon(Icons.circle, size: 5, color: rmList![index].rmstatus! == 1
+                Icon(Icons.circle, size: Sizes.dimen_6.sp.toDouble(), color: rmList![index].rmstatus! == 1
                     ? successColor
                     : rmList![index].rmstatus! == 2
                     ? Colors.amber
                     : errorColor,),
-                const SizedBox(width: Sizes.dimen_4,),
+                SizedBox(width: Sizes.dimen_4.w.toDouble(),),
                 AutoSizeText(
                     rmList![index].rmstatus! == 1
                         ? 'Available'
@@ -317,7 +338,7 @@ class _ItemSearchDelegate extends SearchDelegate {
                         ? 'Busy'
                         : 'Offline',
                     maxLines: 1,
-                    style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_12)),
+                    style: primaryTextFont.copyWith(color: darkGrey, fontSize: Sizes.dimen_12.sp.toDouble())),
               ],
             ),
             // shape: RoundedRectangleBorder(

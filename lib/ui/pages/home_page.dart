@@ -1,7 +1,8 @@
 part of 'pages.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  bool? isDone;
+  HomePage({Key? key, this.isDone=false}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -19,6 +20,13 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     reLogin();
+    Timer(Duration(seconds: 10), (){
+      setState(() {
+        widget.isDone = false;
+        log('isDone updated ? => ${widget.isDone}');
+      });
+    });
+    log('isDone ? => ${widget.isDone}');
   }
 
   void reLogin() async {
@@ -77,9 +85,26 @@ class _HomePageState extends State<HomePage> {
                 if (snapshot.hasError) {
                   return const Center(child: Text('Some error occurred!'));
                 } else {
-                  return advisoryDetail != null
+                  return widget.isDone == true ?
+                  Padding(
+                    padding: EdgeInsets.only(right: Sizes.dimen_100.w.toDouble()),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          SharedString.thanks,
+                          style: primaryTextFont.copyWith(
+                              color: mainColor,
+                              fontWeight: FontWeight.w600,
+                              fontSize: Sizes.dimen_64.sp.toDouble()),
+                        ),
+                      ],
+                    ),
+                  )
+                    : advisoryDetail != null
                     ? Padding(
-                    padding: EdgeInsets.only(right: Sizes.dimen_64),
+                    padding: EdgeInsets.only(right: Sizes.dimen_64.w.toDouble()),
                       child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.end,
@@ -89,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                               style: primaryTextFont.copyWith(
                                   color: secondaryColor,
                                   fontWeight: FontWeight.w600,
-                                  fontSize: Sizes.dimen_48),
+                                  fontSize: Sizes.dimen_40.sp.toDouble()),
                             ),
                           ElevatedButton(
                             onPressed: () {
@@ -119,17 +144,23 @@ class _HomePageState extends State<HomePage> {
                               }),),
                             child: Padding(
                               padding: const EdgeInsets.all(Sizes.dimen_12),
-                              child: Text('Continue', style: primaryTextFont.copyWith(fontSize: Sizes.dimen_24, color: Colors.white, fontWeight: FontWeight.w600),),
+                              child: Text('Continue', style: primaryTextFont.copyWith(fontSize: Sizes.dimen_20.sp.toDouble(), color: Colors.white, fontWeight: FontWeight.w600),),
                             ),
                           ),
                         ],
                       ),
                     )
-
-                  : Container(
-                    margin: const EdgeInsets.only(right: Sizes.dimen_32),
+                      : Container(
+                    margin: EdgeInsets.only(right: Sizes.dimen_24.w.toDouble()),
                     alignment: Alignment.centerRight,
-                    child: Image.asset('assets/images/logo.png', height: size.height * 0.3,)
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Image.asset('assets/images/logo.png', height: size.height.h.toDouble() * 0.25,),
+                        Text('Virtual Advisory', textAlign: TextAlign.end, style: primaryTextFont.copyWith(fontSize: Sizes.dimen_48.sp.toDouble(), color: mainColor, fontWeight: FontWeight.w700),)
+                      ],
+                    )
                   );
                 }
               },
