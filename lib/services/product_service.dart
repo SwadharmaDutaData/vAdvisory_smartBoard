@@ -34,7 +34,7 @@ class ProductServices {
     List<ProductModel> productModel = (data['data']['Data'] as Iterable)
         .map((e) => ProductModel.fromJson(e))
         .toList();
-    log("logs  ${jsonDecode(response.body)}");
+    log("logsz  ${jsonDecode(response.body)}");
     return ApiReturnValue(value: productModel);
   }
 
@@ -67,11 +67,10 @@ class ProductServices {
     }
 
     var data = jsonDecode(response.body);
-
+    log("logs pro ${jsonDecode(response.body)}");
     List<RmModel> rmModel = (data['data']['Data'] as Iterable)
         .map((e) => RmModel.fromJson(e))
         .toList();
-    log("logs  ${jsonDecode(response.body)}");
     return ApiReturnValue(value: rmModel);
   }
 }

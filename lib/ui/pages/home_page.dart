@@ -2,7 +2,8 @@ part of 'pages.dart';
 
 class HomePage extends StatefulWidget {
   bool? isDone;
-  HomePage({Key? key, this.isDone=false}) : super(key: key);
+  BranchModel? branch;
+  HomePage({Key? key, this.isDone=false, this.branch}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -20,13 +21,13 @@ class _HomePageState extends State<HomePage> {
     // TODO: implement initState
     super.initState();
     reLogin();
-    Timer(Duration(seconds: 10), (){
-      setState(() {
-        widget.isDone = false;
-        log('isDone updated ? => ${widget.isDone}');
-      });
-    });
-    log('isDone ? => ${widget.isDone}');
+    // Timer(Duration(seconds: 10), (){
+    //   setState(() {
+    //     widget.isDone = false;
+    //     log('isDone updated ? => ${widget.isDone}');
+    //   });
+    // });
+    // log('isDone ? => ${widget.isDone}');
   }
 
   void reLogin() async {
@@ -121,6 +122,7 @@ class _HomePageState extends State<HomePage> {
                               ProductModel? product = advisoryDetail!.mproduct;
                               CustomerModel? customer = advisoryDetail!.mcust!;
                               List<RmModel>? rmList = advisoryDetail!.mrmList!;
+                              log('check branch ${widget.branch}');
                               product != null
                                   ? Get.offAll(ProductDetailPage(
                                 productName: product.productname,
@@ -129,11 +131,13 @@ class _HomePageState extends State<HomePage> {
                                 item: advisoryDetail,
                                 rmList: rmList,
                                 productPk: product.mproductpk,
+                                branch: widget.branch,
                               ))
                                   : Get.offAll(ProductPage(
                                 customer: customer,
                                 advisoryDetail: advisoryDetail,
                                 link: advisoryDetail!.link,
+                                branch: widget.branch,
                               ));
                             },
                             style: ButtonStyle(

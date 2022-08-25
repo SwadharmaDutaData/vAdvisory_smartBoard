@@ -7,6 +7,7 @@ class ProductDetailPage extends StatefulWidget {
   final CustomerModel? customer;
   List<RmModel>? rmList = [];
   final int? productPk;
+  final BranchModel? branch;
 
   ProductDetailPage(
       {Key? key,
@@ -15,7 +16,8 @@ class ProductDetailPage extends StatefulWidget {
       this.customer,
       this.item,
       this.rmList,
-      this.productPk})
+      this.productPk,
+      this.branch})
       : super(key: key);
 
   @override
@@ -149,7 +151,8 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                       delegate: _ItemSearchDelegate(
                                           customer: widget.customer,
                                           link: widget.item!.link,
-                                      rmList: widget.rmList));
+                                      rmList: widget.rmList,
+                                      branch: widget.branch));
                                 },
                                 child: Container(
                                   width: size.width * 0.13,
@@ -222,7 +225,9 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                               Get.to(DetailRmPage(
                                                   item: widget.rmList![index],
                                                   link: widget.item!.link.toString(),
-                                                  customer: widget.customer));
+                                                  customer: widget.customer,
+                                                branch: widget.branch,
+                                              ));
                                             } : () {},
                                             child: RmCardWidget(
                                               item: widget.rmList![index],
@@ -267,8 +272,9 @@ class _ItemSearchDelegate extends SearchDelegate {
   CustomerModel? customer;
   String? link;
   List<RmModel>? rmList;
+  BranchModel? branch;
 
-  _ItemSearchDelegate({this.link, this.customer, this.rmList});
+  _ItemSearchDelegate({this.link, this.customer, this.rmList, this.branch});
 
   @override
   String get searchFieldLabel => SharedString.searchRm;
@@ -347,7 +353,7 @@ class _ItemSearchDelegate extends SearchDelegate {
             onTap: rmList![index].rmstatus == 1 ? () {
               query = rmName;
               Get.to(DetailRmPage(
-                  item: rmList![index], link: link, customer: customer));
+                  item: rmList![index], link: link, customer: customer, branch: branch,));
               showResults(context);
             } : (){},
           );

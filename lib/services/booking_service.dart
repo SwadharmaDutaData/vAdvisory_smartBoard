@@ -62,7 +62,8 @@ class BookingServices {
       print('General Error: $e');
     }
 
-    if (response!.statusCode != 200) {
+    log('responbodynya ${jsonDecode(response!.body)}');
+    if (response.statusCode != 200) {
       return ApiReturnValue(message: 'Please try again');
     }
 
@@ -71,7 +72,6 @@ class BookingServices {
     List<BranchModel> branchModel = (data['data']['Data'] as Iterable)
         .map((e) => BranchModel.fromJson(e))
         .toList();
-    log("logs branchnya ${jsonDecode(response.body)}");
     return ApiReturnValue(value: branchModel);
   }
 
@@ -114,7 +114,7 @@ class BookingServices {
     return AdvisoryReturnValue(valueA: valueA, valueB: valueB);
   }
 
-  static Future<ApiReturnValue<AdvisoryModel>> postAdvisory(String bookid, RmModel mrm, CustomerModel mcust, ProductModel mproduct,
+  static Future<ApiReturnValue<AdvisoryModel>> postAdvisory(String bookid, RmModel mrm, CustomerModel mcust, ProductModel mproduct, BranchModel mbranch,
       {http.Client? client}) async {
     String? url = baseURL + "tadvisory";
     client ??= http.Client();
@@ -126,13 +126,27 @@ class BookingServices {
 
     http.Response? response;
 
+    log('jsonEncodenya 1 ${jsonEncode(<String, dynamic>{
+      'data': <String, dynamic>{
+        'mrm': mrm.toJson(),
+        'mbranch': mbranch.toJson(),
+        'mcust': mcust.toJson(),
+        'mproduct': mproduct.toJson(),
+        'meetstart': null,
+        'meetend': null,
+        'meetdate': null,
+        'bookid': bookid,
+        'meetstatus': null
+      },
+    })}');
+
     try {
       response = await client
           .post(Uri.parse(url),
           body: jsonEncode(<String, dynamic>{
             'data': <String, dynamic>{
-              'tadvisorypk': null,
               'mrm': mrm.toJson(),
+              'mbranch': mbranch.toJson(),
               'mcust': mcust.toJson(),
               'mproduct': mproduct.toJson(),
               'meetstart': null,
@@ -153,8 +167,8 @@ class BookingServices {
     }
     log('jsonEncodenya ${jsonEncode(<String, dynamic>{
       'data': <String, dynamic>{
-        'tadvisorypk': null,
         'mrm': mrm.toJson(),
+        'mbranch': mbranch.toJson(),
         'mcust': mcust.toJson(),
         'mproduct': mproduct.toJson(),
         'meetstart': null,

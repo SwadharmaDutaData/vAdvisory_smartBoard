@@ -8,7 +8,7 @@ class RegionModel extends Equatable {
     this.regionname,
     this.updatedby,
     this.lastupdated,
-    this.mprovincefk
+    this.mprovince
   });
   final int? mregionpk;
   final String? regioncode;
@@ -16,30 +16,33 @@ class RegionModel extends Equatable {
   final String? regionname;
   final String? updatedby;
   final String? lastupdated;
-  final int? mprovincefk;
+  final ProvinceModel? mprovince;
 
   RegionModel copyWith({
     int? mregionpk,
-    int? mprovincefk,
     String? regioncode,
     String? regionid,
     String? regionname,
     String? updatedby,
     String? lastupdated,
+    ProvinceModel? mprovince,
   }) =>
       RegionModel(
         mregionpk: mregionpk ?? this.mregionpk,
-        mprovincefk: mprovincefk ?? this.mprovincefk,
         regioncode: regioncode ?? this.regioncode,
         regionid: regionid ?? this.regionid,
         regionname: regionname ?? this.regionname,
         updatedby: updatedby ?? this.updatedby,
         lastupdated: lastupdated ?? this.lastupdated,
+        mprovince: mprovince ?? this.mprovince,
+
       );
 
   factory RegionModel.fromJson(Map<String, dynamic> json) => RegionModel(
     mregionpk: json['mregionpk'] ?? 0,
-    mprovincefk: json['mprovincefk'] ?? 0,
+    mprovince: json["mprovince"] != null
+        ? ProvinceModel.fromJson(json["mprovince"])
+        : null,
     regioncode: json['regioncode']?.trim() ?? '',
     regionid: json['regionid']?.trim() ?? '',
     regionname: json['regionname']?.trim() ?? '',
@@ -47,11 +50,21 @@ class RegionModel extends Equatable {
     lastupdated: json['lastupdated']?.trim() ?? '',
   );
 
+  Map<String, dynamic> toJson() => {
+    "mregionpk": mregionpk,
+    "mprovince": mprovince,
+    "regioncode": regioncode,
+    "regionid": regionid,
+    "regionname": regionname,
+    "lastupdated": lastupdated,
+    "updatedby": updatedby,
+  };
+
   @override
   // TODO: implement props
   List<Object?> get props => [
     mregionpk!,
-    mprovincefk!,
+    mprovince!,
     regioncode!,
     regionid!,
     regionname!,

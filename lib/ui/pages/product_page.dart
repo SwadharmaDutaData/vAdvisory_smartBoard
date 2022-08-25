@@ -4,8 +4,9 @@ class ProductPage extends StatefulWidget {
   final String? link;
   final CustomerModel? customer;
   final AdvisoryDetailModel? advisoryDetail;
+  final BranchModel? branch;
 
-  const ProductPage({Key? key, this.link, this.customer, this.advisoryDetail})
+  const ProductPage({Key? key, this.link, this.customer, this.advisoryDetail, this.branch})
       : super(key: key);
 
   @override
@@ -120,7 +121,8 @@ class _ProductPageState extends State<ProductPage> {
                                       customer: widget.advisoryDetail!.mcust!,
                                       item: widget.advisoryDetail,
                                       productList:
-                                          widget.advisoryDetail!.mproductList));
+                                          widget.advisoryDetail!.mproductList,
+                                  branch: widget.branch));
                             },
                             child: Container(
                               width: size.width * 0.13,
@@ -202,6 +204,7 @@ class _ProductPageState extends State<ProductPage> {
                                           rmList: state.rmList,
                                           productPk: widget.advisoryDetail!
                                               .mproductList![index].mproductpk,
+                                          branch: widget.branch,
                                         ));
                                       } else {
                                         print('rm failed');
@@ -236,8 +239,9 @@ class ItemSearchDelegate extends SearchDelegate {
   CustomerModel? customer;
   AdvisoryDetailModel? item;
   List<ProductModel>? productList;
+  BranchModel? branch;
 
-  ItemSearchDelegate({this.item, this.customer, this.productList});
+  ItemSearchDelegate({this.item, this.customer, this.productList, this.branch});
 
   @override
   String get searchFieldLabel => SharedString.searchProduct;
@@ -316,6 +320,7 @@ class ItemSearchDelegate extends SearchDelegate {
                 customer: customer,
                 productDesc: productDesc,
                 rmList: rmList,
+                branch: branch,
               ));
               showResults(context);
             },

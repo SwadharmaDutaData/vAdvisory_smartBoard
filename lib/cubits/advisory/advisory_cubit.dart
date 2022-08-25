@@ -9,8 +9,8 @@ part 'advisory_state.dart';
 class AdvisoryCubit extends Cubit<AdvisoryState> {
   AdvisoryCubit() : super(AdvisoryInitial());
 
-  Future<void> postAdvisory(String bookid, RmModel mrm, CustomerModel mcust, ProductModel mproduct,) async {
-    ApiReturnValue<AdvisoryModel> result = await BookingServices.postAdvisory(bookid, mrm, mcust, mproduct,);
+  Future<void> postAdvisory(String bookid, RmModel mrm, CustomerModel mcust, ProductModel mproduct, BranchModel mbranch) async {
+    ApiReturnValue<AdvisoryModel> result = await BookingServices.postAdvisory(bookid, mrm, mcust, mproduct, mbranch);
 
     if (result.value != null) {
       emit(AdvisoryLoaded(result.value!));

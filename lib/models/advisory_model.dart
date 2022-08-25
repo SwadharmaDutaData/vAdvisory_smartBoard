@@ -6,48 +6,48 @@ class AdvisoryModel extends Equatable {
         this.mrm,
         this.mcust,
         this.mproduct,
+        this.mbranch,
         this.meetstart,
         this.meetend,
         this.meetdate,
         this.bookid,
         this.meetstatus,
-        this.rate
       });
 
   final int? tadvisorypk;
   final RmModel? mrm;
   final CustomerModel? mcust;
   final ProductModel? mproduct;
+  final BranchModel? mbranch;
   final String? meetstart;
   final String? meetend;
   final String? meetdate;
   final String? bookid;
   final int? meetstatus;
-  final int? rate;
 
   AdvisoryModel copyWith({
     int? tadvisorypk,
     RmModel? mrm,
     CustomerModel? mcust,
     ProductModel? mproduct,
+    BranchModel? mbranch,
     String? meetstart,
     String? meetend,
     String? meetdate,
     String? bookid,
     int? meetstatus,
-    int? rate,
   }) =>
       AdvisoryModel(
-          tadvisorypk: tadvisorypk ?? this.tadvisorypk,
-          mrm: mrm ?? this.mrm,
-          mcust: mcust ?? this.mcust,
-          meetstart: meetstart ?? this.meetstart,
-          bookid: bookid ?? this.bookid,
-          meetend: meetend ?? this.meetend,
-          meetdate: meetdate ?? this.meetdate,
-          mproduct: mproduct ?? this.mproduct,
-          meetstatus: meetstatus ?? this.meetstatus,
-        rate: rate ?? this.rate,
+        tadvisorypk: tadvisorypk ?? this.tadvisorypk,
+        mrm: mrm ?? this.mrm,
+        mcust: mcust ?? this.mcust,
+        mbranch: mbranch ?? this.mbranch,
+        meetstart: meetstart ?? this.meetstart,
+        bookid: bookid ?? this.bookid,
+        meetend: meetend ?? this.meetend,
+        meetdate: meetdate ?? this.meetdate,
+        mproduct: mproduct ?? this.mproduct,
+        meetstatus: meetstatus ?? this.meetstatus,
       );
 
   factory AdvisoryModel.fromJson(Map<String, dynamic> json) => AdvisoryModel(
@@ -62,11 +62,13 @@ class AdvisoryModel extends Equatable {
     mcust: json["mcust"] != null
         ? CustomerModel.fromJson(json["mcust"])
         : null,
+    mbranch: json["mbranch"] != null
+        ? BranchModel.fromJson(json["mbranch"])
+        : null,
     mproduct: json["mproduct"] != null
         ? ProductModel.fromJson(json["mproduct"])
         : null,
     meetstatus: json['meetstatus'] ?? 0,
-    rate: json['rate'] ?? 0,
   );
 
   Map<String, dynamic> toJson() => {
@@ -77,9 +79,9 @@ class AdvisoryModel extends Equatable {
     "bookid": bookid,
     "meetdate": meetdate,
     "mrm": mrm,
+    "mbranch": mbranch,
     "mproduct": mproduct,
     "meetstatus": meetstatus,
-    "rate": rate,
   };
 
   @override
@@ -91,9 +93,9 @@ class AdvisoryModel extends Equatable {
     meetstart,
     meetdate,
     mrm,
+    mbranch,
     mcust,
     mproduct,
     meetstatus,
-    rate,
   ];
 }

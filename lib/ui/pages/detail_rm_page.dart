@@ -2,9 +2,10 @@ part of 'pages.dart';
 
 class DetailRmPage extends StatefulWidget {
   final String? link;
+  final BranchModel? branch;
   final RmModel? item;
   final CustomerModel? customer;
-  const DetailRmPage({Key? key, this.link, this.item, this.customer,}) : super(key: key);
+  const DetailRmPage({Key? key, this.branch, this.link, this.item, this.customer,}) : super(key: key);
 
   @override
   _DetailRmPageState createState() => _DetailRmPageState();
@@ -16,7 +17,7 @@ class _DetailRmPageState extends State<DetailRmPage> {
   TextEditingController? roomText;
   TextEditingController? subjectText;
   TextEditingController? nameText;
-  MemoryImage? avatarUrl;
+  // MemoryImage? avatarUrl;
   TextEditingController? emailText;
   TextEditingController? iosAppBarRGBAColor; //transparent blue
   bool? isAudioOnly = false;
@@ -244,7 +245,7 @@ class _DetailRmPageState extends State<DetailRmPage> {
       _isLoading = true;
     });
     try {
-      await context.read<AdvisoryCubit>().postAdvisory(widget.link!.substring(20, 29), widget.item!, widget.customer!, widget.item!.mproduct!);
+      await context.read<AdvisoryCubit>().postAdvisory(widget.link!.substring(20, 29), widget.item!, widget.customer!, widget.item!.mproduct!, widget.branch!);
       await context.read<NotificationCubit>().pushNotification('Anda mendapatkan permintaan meet dari ${widget.customer!.custname!.capitalize}', widget.item!.rmname!.capitalize!, widget.item!.token!);
       AdvisoryState state = context.read<AdvisoryCubit>().state;
       NotificationState nstate = context.read<NotificationCubit>().state;
@@ -300,13 +301,13 @@ class _DetailRmPageState extends State<DetailRmPage> {
                         AdvisoryState state = context.read<AdvisoryCubit>().state;
 
                         if (state is AdvisoryLoaded) {
-                          Get.offAll(HomePage(isDone: true,));
+                          Get.offAll(HomePage(isDone: true, branch: widget.branch,));
                         } else {
                           Fluttertoast.showToast(
                               msg: "gagal rate",
                               backgroundColor: errorColor,
                               gravity: ToastGravity.TOP);
-                          Get.offAll(HomePage(isDone: true,));
+                          Get.offAll(HomePage(isDone: true, branch: widget.branch,));
                         }
                       } catch (e) {
                         debugPrint('error $e');

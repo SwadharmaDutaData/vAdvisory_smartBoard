@@ -9,6 +9,7 @@ class BranchModel extends Equatable {
     this.branchname,
     this.lastupdated,
     this.updatedby,
+    this.mregion,
   });
 
   final int? mbranchpk;
@@ -18,6 +19,7 @@ class BranchModel extends Equatable {
   final String? branchname;
   final String? lastupdated;
   final String? updatedby;
+  final RegionModel? mregion;
 
   BranchModel copyWith({
     int? mbranchpk,
@@ -27,6 +29,7 @@ class BranchModel extends Equatable {
     String? branchname,
     String? lastupdated,
     String? updatedby,
+    RegionModel? mregion,
   }) =>
       BranchModel(
         mbranchpk: mbranchpk ?? this.mbranchpk,
@@ -36,6 +39,7 @@ class BranchModel extends Equatable {
         branchname: branchname ?? this.branchname,
         lastupdated: lastupdated ?? this.lastupdated,
         updatedby: updatedby ?? this.updatedby,
+        mregion: mregion ?? this.mregion,
       );
 
   factory BranchModel.fromJson(Map<String, dynamic> json) => BranchModel(
@@ -46,6 +50,9 @@ class BranchModel extends Equatable {
     branchname: json['branchname']?.trim() ?? '',
     lastupdated: json['lastupdated']?.trim() ?? '',
     updatedby: json['updatedby']?.trim() ?? '',
+    mregion: json["mregion"] != null
+        ? RegionModel.fromJson(json["mregion"])
+        : null,
   );
 
   Map<String, dynamic> toJson() => {
@@ -56,17 +63,19 @@ class BranchModel extends Equatable {
     "branchname": branchname,
     "lastupdated": lastupdated,
     "updatedby": updatedby,
+    "mregion": mregion,
   };
 
   @override
   // TODO: implement props
   List<Object?> get props => [
-    mbranchpk!,
-    branchaddress!,
-    branchcode!,
-    branchid!,
-    branchname!,
-    lastupdated!,
-    updatedby!,
+    mbranchpk,
+    branchaddress,
+    branchcode,
+    branchid,
+    branchname,
+    lastupdated,
+    updatedby,
+    mregion,
   ];
 }

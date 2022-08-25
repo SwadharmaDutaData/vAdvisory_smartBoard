@@ -256,11 +256,12 @@ class _DeviceRegistrationPageState extends State<DeviceRegistrationPage> {
         setState(() {
           _isLoading = false;
         });
+        log('check branchx $selectedBranch');
         Fluttertoast.showToast(
             msg: 'Perangkat berhasil didaftarkan',
             backgroundColor: statusOkColor,
             gravity: ToastGravity.BOTTOM);
-        Get.offAll(HomePage());
+        Get.offAll(HomePage(branch: selectedBranch));
       } else {
         setState(() {
           _isLoading = false;
