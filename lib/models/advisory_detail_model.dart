@@ -7,6 +7,7 @@ class AdvisoryDetailModel extends Equatable {
     this.mproduct,
     this.mproductList,
     this.link,
+    this.mbranch,
   });
 
   final CustomerModel? mcust;
@@ -14,6 +15,7 @@ class AdvisoryDetailModel extends Equatable {
   final ProductModel? mproduct;
   final List<ProductModel>? mproductList;
   final String? link;
+  final BranchModel? mbranch;
 
   AdvisoryDetailModel copyWith({
     CustomerModel? mcust,
@@ -21,13 +23,16 @@ class AdvisoryDetailModel extends Equatable {
     ProductModel? mproduct,
     List<ProductModel>? mproductList,
     String? link,
+    BranchModel? mbranch,
   }) =>
       AdvisoryDetailModel(
           mcust: mcust ?? this.mcust,
           mrmList: mrmList ?? this.mrmList,
           mproductList: mproductList ?? this.mproductList,
           mproduct: mproduct ?? this.mproduct,
-          link: link ?? this.link);
+          link: link ?? this.link,
+        mbranch: mbranch ?? this.mbranch,
+      );
 
   factory AdvisoryDetailModel.fromJson(Map<String, dynamic> json) =>
       AdvisoryDetailModel(
@@ -42,6 +47,9 @@ class AdvisoryDetailModel extends Equatable {
         mproductList: List<ProductModel>.from(
             json['mproductList'].map((model) => ProductModel.fromJson(model))),
         link: json['link']?.trim() ?? '',
+        mbranch: json["mbranch"] != null
+            ? BranchModel.fromJson(json["mbranch"])
+            : null,
       );
 
   Map<String, dynamic> toJson() => {
@@ -50,6 +58,7 @@ class AdvisoryDetailModel extends Equatable {
         "mcust": mcust,
         "mproduct": mproduct,
         "link": link,
+        "mbranch": mbranch,
       };
 
   @override
@@ -60,5 +69,6 @@ class AdvisoryDetailModel extends Equatable {
         mproduct,
         mproductList,
         link,
+    mbranch,
       ];
 }

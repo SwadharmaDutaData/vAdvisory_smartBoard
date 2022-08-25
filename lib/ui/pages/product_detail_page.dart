@@ -7,7 +7,6 @@ class ProductDetailPage extends StatefulWidget {
   final CustomerModel? customer;
   List<RmModel>? rmList = [];
   final int? productPk;
-  final BranchModel? branch;
 
   ProductDetailPage(
       {Key? key,
@@ -16,8 +15,7 @@ class ProductDetailPage extends StatefulWidget {
       this.customer,
       this.item,
       this.rmList,
-      this.productPk,
-      this.branch})
+      this.productPk,})
       : super(key: key);
 
   @override
@@ -152,7 +150,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                           customer: widget.customer,
                                           link: widget.item!.link,
                                       rmList: widget.rmList,
-                                      branch: widget.branch));
+                                        branch: widget.item!.mbranch,));
                                 },
                                 child: Container(
                                   width: size.width * 0.13,
@@ -226,7 +224,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                                   item: widget.rmList![index],
                                                   link: widget.item!.link.toString(),
                                                   customer: widget.customer,
-                                                branch: widget.branch,
+                                                branch: widget.item!.mbranch,
                                               ));
                                             } : () {},
                                             child: RmCardWidget(

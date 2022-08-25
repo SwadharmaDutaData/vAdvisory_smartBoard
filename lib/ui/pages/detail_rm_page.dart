@@ -301,13 +301,13 @@ class _DetailRmPageState extends State<DetailRmPage> {
                         AdvisoryState state = context.read<AdvisoryCubit>().state;
 
                         if (state is AdvisoryLoaded) {
-                          Get.offAll(HomePage(isDone: true, branch: widget.branch,));
+                          Get.offAll(HomePage(isDone: true));
                         } else {
                           Fluttertoast.showToast(
                               msg: "gagal rate",
                               backgroundColor: errorColor,
                               gravity: ToastGravity.TOP);
-                          Get.offAll(HomePage(isDone: true, branch: widget.branch,));
+                          Get.offAll(HomePage(isDone: true));
                         }
                       } catch (e) {
                         debugPrint('error $e');

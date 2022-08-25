@@ -204,7 +204,6 @@ class _ProductPageState extends State<ProductPage> {
                                           rmList: state.rmList,
                                           productPk: widget.advisoryDetail!
                                               .mproductList![index].mproductpk,
-                                          branch: widget.branch,
                                         ));
                                       } else {
                                         print('rm failed');
@@ -320,7 +319,6 @@ class ItemSearchDelegate extends SearchDelegate {
                 customer: customer,
                 productDesc: productDesc,
                 rmList: rmList,
-                branch: branch,
               ));
               showResults(context);
             },

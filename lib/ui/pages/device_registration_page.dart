@@ -261,7 +261,7 @@ class _DeviceRegistrationPageState extends State<DeviceRegistrationPage> {
             msg: 'Perangkat berhasil didaftarkan',
             backgroundColor: statusOkColor,
             gravity: ToastGravity.BOTTOM);
-        Get.offAll(HomePage(branch: selectedBranch));
+        Get.offAll(HomePage());
       } else {
         setState(() {
           _isLoading = false;
