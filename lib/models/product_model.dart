@@ -1,15 +1,17 @@
 part of 'models.dart';
 
 class ProductModel extends Equatable {
-  const ProductModel(
-      {this.mproductpk,
-        this.productcode,
-        this.productname,
-        this.productdesc,
-        this.lastupdated,
-        this.updatedby,
-        this.link,
-        this.icon});
+  const ProductModel({
+    this.mproductpk,
+    this.productcode,
+    this.productname,
+    this.productdesc,
+    this.lastupdated,
+    this.updatedby,
+    this.link,
+    this.icon,
+    this.iconurl,
+  });
 
   final int? mproductpk;
   final String? productcode;
@@ -19,6 +21,7 @@ class ProductModel extends Equatable {
   final String? updatedby;
   final String? link;
   final String? icon;
+  final String? iconurl;
 
   ProductModel copyWith({
     int? mproductpk,
@@ -29,6 +32,7 @@ class ProductModel extends Equatable {
     String? updatedby,
     String? link,
     String? icon,
+    String? iconurl,
   }) =>
       ProductModel(
         mproductpk: mproductpk ?? this.mproductpk,
@@ -39,6 +43,7 @@ class ProductModel extends Equatable {
         updatedby: updatedby ?? this.updatedby,
         link: link ?? this.link,
         icon: icon ?? this.icon,
+        iconurl: iconurl ?? this.iconurl,
       );
 
   factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
@@ -50,6 +55,7 @@ class ProductModel extends Equatable {
     updatedby: json['updatedby']?.trim() ?? '',
     link: json['link']?.trim() ?? '',
     icon: json['icon']?.trim() ?? '',
+    iconurl: json['iconurl']?.trim() ?? '',
   );
 
   Map<String, dynamic> toJson() => {
@@ -61,6 +67,7 @@ class ProductModel extends Equatable {
     "updatedby": updatedby,
     "link": link,
     "icon": icon,
+    "iconurl": iconurl,
   };
 
   @override
@@ -74,5 +81,6 @@ class ProductModel extends Equatable {
     updatedby!,
     link!,
     icon!,
+    iconurl!,
   ];
 }

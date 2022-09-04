@@ -15,7 +15,7 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    Uint8List imgByte = base64Decode(widget.item.icon!);
+    // Uint8List imgByte = base64Decode(widget.item.icon!);
     return GestureDetector(
       onTap: widget.onClick,
       child: Padding(
@@ -34,9 +34,9 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                    widget.item.icon != ''
+                    widget.item.iconurl != ''
                         ? Center(
-                      child: Image.memory(imgByte, height: size.height.h.toDouble() * 0.2,)
+                      child: Image.network(widget.item.iconurl!, height: size.height.h.toDouble() * 0.2,)
                       )
                      : Center(child: Image.asset('assets/images/produk_bni.png', height: size.height.h.toDouble() * 0.2,),),
                   SizedBox(

@@ -26,7 +26,7 @@ class RegistrationService {
           }
           ),
           headers: _mapHeader)
-          .timeout(Duration(seconds: 10));
+          .timeout(Duration(seconds: 60));
     } on TimeoutException catch (e) {
       print('Timeout Error: $e');
     } on SocketException catch (e) {
@@ -69,7 +69,7 @@ class RegistrationService {
     try {
       response = await client
           .get(Uri.parse(url), headers: _mapHeader)
-          .timeout(Duration(seconds: 10));
+          .timeout(Duration(seconds: 60));
     } on TimeoutException catch (e) {
       print('Timeout Error: $e');
     } on SocketException catch (e) {

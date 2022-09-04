@@ -23,7 +23,6 @@ class ProductDetailPage extends StatefulWidget {
 }
 
 class _ProductDetailPageState extends State<ProductDetailPage> {
-
   Future<dynamic> _refreshStatus(BuildContext context) async {
     try {
       await context.read<RmCubit>().getRmById(widget.productPk!);
@@ -44,7 +43,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
         .asyncMap((_) => _refreshStatus(context));
 
     Size size = MediaQuery.of(context).size;
-    Uint8List imgByte = base64Decode(widget.customer!.imagedata!);
+    // Uint8List imgByte = base64Decode(widget.customer!.imagedata!);
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -77,7 +76,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                               SizedBox(height: Sizes.dimen_8.h.toDouble(),),
                               Text(
-                                'PRODUK ${widget.productName!}',
+                                widget.productName!,
                                 style: primaryTextFont.copyWith(
                                     color: mainColor,
                                     fontWeight: FontWeight.w700,
@@ -85,7 +84,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                               ),
                               SizedBox(height: Sizes.dimen_8.h.toDouble(),),
                               Text(
-                                'Deskripsi produk : ${widget.productDesc!.capitalizeFirst}',
+                                widget.productDesc!,
                                 style: primaryTextFont.copyWith(fontSize: Sizes.dimen_16.sp.toDouble()),
                               )
                             ],
@@ -129,9 +128,10 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                   Expanded(
                                     flex: 1,
                                     child: CircleAvatar(
-                                      backgroundColor: widget.customer!.imagedata != '' ? Colors.white : borderGrey,
-                                      backgroundImage: widget.customer!.imagedata != ''
-                                          ? MemoryImage(imgByte)
+                                      backgroundColor: widget.customer!.imageurl != '' ? Colors.white : borderGrey,
+                                      backgroundImage: widget.customer!.imageurl != ''
+                                          // ? MemoryImage(imgByte)
+                                          ? NetworkImage(widget.customer!.imageurl!)
                                           : const AssetImage(SharedImage.avatar)
                                       as ImageProvider,
                                       radius: size.height.h.toDouble() * 0.04,

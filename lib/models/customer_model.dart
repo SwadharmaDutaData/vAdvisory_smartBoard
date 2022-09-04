@@ -15,6 +15,8 @@ class CustomerModel extends Equatable {
         this.iscollectibility,
         this.havecreditcard,
         this.imagedata,
+        this.imageurl,
+        this.imagename,
         this.totalsaldo,
         this.token,
         this.deviceid});
@@ -32,6 +34,8 @@ class CustomerModel extends Equatable {
   final int? iscollectibility;
   final bool? havecreditcard;
   final String? imagedata;
+  final String? imageurl;
+  final String? imagename;
   final int? totalsaldo;
   final String? token;
   final String? deviceid;
@@ -50,6 +54,8 @@ class CustomerModel extends Equatable {
     int? iscollectibility,
     bool? havecreditcard,
     String? imagedata,
+    String? imageurl,
+    String? imagename,
     int? totalsaldo,
     String? token,
     String? deviceid,
@@ -68,6 +74,8 @@ class CustomerModel extends Equatable {
         iscollectibility: iscollectibility ?? this.iscollectibility,
         havecreditcard: havecreditcard ?? this.havecreditcard,
         imagedata: imagedata ?? this.imagedata,
+        imageurl: imageurl ?? this.imageurl,
+        imagename: imagename ?? this.imagename,
         totalsaldo: totalsaldo ?? this.totalsaldo,
         token: token ?? this.token,
         deviceid: deviceid ?? this.deviceid,
@@ -87,6 +95,8 @@ class CustomerModel extends Equatable {
     iscollectibility: json['iscollectibility'] ?? 0,
     havecreditcard: json['havecreditcard'] ?? true,
     imagedata: json['imagedata']?.trim() ?? '',
+    imageurl: json['imageurl']?.trim() ?? '',
+    imagename: json['imagename']?.trim() ?? '',
     totalsaldo: json['totalsaldo'] ?? 0,
     token: json['token']?.trim() ?? '',
     deviceid: json['deviceid']?.trim() ?? '',
@@ -106,6 +116,8 @@ class CustomerModel extends Equatable {
     "iscollectibility": iscollectibility,
     "havecreditcard": havecreditcard,
     "imagedata": imagedata,
+    "imageurl": imageurl,
+    "imagename": imagename,
     "totalsaldo": totalsaldo,
     "token": token,
     "deviceid": deviceid,
@@ -127,6 +139,8 @@ class CustomerModel extends Equatable {
     iscollectibility,
     havecreditcard,
     imagedata,
+    imageurl,
+    imagename,
     totalsaldo,
     token,
     deviceid,

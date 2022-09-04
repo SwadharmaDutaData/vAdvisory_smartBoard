@@ -17,7 +17,7 @@ class _DetailRmPageState extends State<DetailRmPage> {
   TextEditingController? roomText;
   TextEditingController? subjectText;
   TextEditingController? nameText;
-  // MemoryImage? avatarUrl;
+  String? avatarUrl;
   TextEditingController? emailText;
   TextEditingController? iosAppBarRGBAColor; //transparent blue
   bool? isAudioOnly = false;
@@ -30,7 +30,7 @@ class _DetailRmPageState extends State<DetailRmPage> {
   void initState() {
     roomText = TextEditingController(text: widget.link!.substring(20, 29));
     emailText = TextEditingController(text: widget.customer!.email);
-    // avatarUrl = MemoryImage(imgByte);
+    avatarUrl = widget.customer!.imageurl!;
     subjectText = TextEditingController(text: "${widget.link!.substring(20, 29)}/${widget.item!.mproduct!.productname}");
     nameText = TextEditingController(text: widget.customer!.custname);
     iosAppBarRGBAColor = TextEditingController(text: mainColor.toString());
@@ -41,7 +41,7 @@ class _DetailRmPageState extends State<DetailRmPage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Uint8List imgByte = base64Decode(widget.item!.imagedata!);
+    // Uint8List imgByte = base64Decode(widget.item!.imagedata!);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Container(
@@ -78,7 +78,8 @@ class _DetailRmPageState extends State<DetailRmPage> {
                           Expanded(
                               flex: 1,
                               child: widget.item!.imagedata != null
-                                  ? Image.memory(imgByte)
+                                  // ? Image.memory(imgByte)
+                                  ? Image.network(widget.item!.imageurl!)
                                   : Image.asset(SharedImage.avatar)),
                           SizedBox(width: Sizes.dimen_16.w.toDouble(),),
                           Expanded(
@@ -87,9 +88,9 @@ class _DetailRmPageState extends State<DetailRmPage> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('${widget.item!.rmname}', style: primaryTextFont.copyWith(color: mainColor, fontSize: Sizes.dimen_36.sp.toDouble(), fontWeight: FontWeight.w700),),
+                                  Text(widget.item!.rmname!, style: primaryTextFont.copyWith(color: mainColor, fontSize: Sizes.dimen_36.sp.toDouble(), fontWeight: FontWeight.w700),),
                                   SizedBox(height: Sizes.dimen_8.h.toDouble(),),
-                                  Text('RM ${widget.item!.mproduct!.productname}', style: primaryTextFont.copyWith(color: secondaryColor, fontSize: Sizes.dimen_24.sp.toDouble(), fontWeight: FontWeight.w600),),
+                                  Text(widget.item!.mproduct!.productname!, style: primaryTextFont.copyWith(color: secondaryColor, fontSize: Sizes.dimen_24.sp.toDouble(), fontWeight: FontWeight.w600),),
                                   SizedBox(height: Sizes.dimen_8.h.toDouble(),),
                                   Expanded(
                                     flex: 4,
@@ -201,6 +202,7 @@ class _DetailRmPageState extends State<DetailRmPage> {
       ..serverURL = serverUrl
       ..subject = subjectText!.text
       ..userDisplayName = nameText!.text
+      ..userAvatarURL = avatarUrl
       ..userEmail = emailText!.text
       ..iosAppBarRGBAColor = iosAppBarRGBAColor!.text
       ..audioOnly = isAudioOnly

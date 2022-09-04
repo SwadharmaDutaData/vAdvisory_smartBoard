@@ -10,10 +10,11 @@ class RmCardWidget extends StatefulWidget {
 }
 
 class _RmCardWidgetState extends State<RmCardWidget> {
+  double? ratingValue;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Uint8List imgByte = base64Decode(widget.item!.imagedata!);
+    // Uint8List imgByte = base64Decode(widget.item!.imagedata!);
     return Visibility(
       visible: widget.item!.rmstatus != 1 ? false : true,
       child: Stack(
@@ -41,7 +42,8 @@ class _RmCardWidgetState extends State<RmCardWidget> {
                           child: Container(
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: MemoryImage(imgByte),
+                                // image: MemoryImage(imgByte),
+                                image: NetworkImage(widget.item!.imageurl!),
                                 fit: BoxFit.cover
                               ),
                               borderRadius: const BorderRadius.only(
@@ -66,16 +68,42 @@ class _RmCardWidgetState extends State<RmCardWidget> {
                       ),
                       Expanded(
                         flex: 1,
-                        child: Text(
-                            widget.item!.rmname!,
-                            textAlign: TextAlign.center,
-                            style: primaryTextFont.copyWith(
-                                color: widget.item! != 0
-                                    ? mainColor
-                                    : deepGrey,
-                                fontSize: Sizes.dimen_20.sp.toDouble(),
-                                fontWeight: FontWeight.bold),
-                          ),
+                        child: Column(
+                          children: [
+                            Text(
+                                widget.item!.rmname!,
+                                textAlign: TextAlign.center,
+                                style: primaryTextFont.copyWith(
+                                    color: widget.item! != 0
+                                        ? mainColor
+                                        : deepGrey,
+                                    fontSize: Sizes.dimen_20.sp.toDouble(),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            SizedBox(height: Sizes.dimen_2.h.toDouble(),),
+                            RatingBar(
+                                initialRating: widget.item!.rating!,
+                                direction: Axis.horizontal,
+                                allowHalfRating: true,
+                                itemSize: Sizes.dimen_20.sp.toDouble(),
+                                itemCount: 5,
+                                ratingWidget: RatingWidget(
+                                    full: Icon(Icons.star, color: Colors.orange),
+                                    half: Icon(
+                                      Icons.star_half,
+                                      color: Colors.orange,
+                                    ),
+                                    empty: Icon(
+                                      Icons.star_outline,
+                                      color: Colors.orange,
+                                    )),
+                                onRatingUpdate: (value) {
+                                  setState(() {
+                                    ratingValue = value;
+                                  });
+                                }),
+                          ],
+                        ),
                       ),
                     ],
                   )),

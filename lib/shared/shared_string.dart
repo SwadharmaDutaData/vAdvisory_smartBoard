@@ -24,8 +24,8 @@ class SharedString {
   static const String order = "Order";
   static const String orderSuccess = "Order Successful";
   static const String note = "Keterangan";
-  static const String product = "Produk";
-  static const String searchProduct = "Cari produk";
+  static const String advisor = "Advisor";
+  static const String searchAdvisor = "Cari Advisor";
   static const String searchRm = "Cari RM";
   static const String region = "Wilayah";
   static const String branch = "Cabang";

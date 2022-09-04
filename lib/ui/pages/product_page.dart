@@ -16,7 +16,7 @@ class ProductPage extends StatefulWidget {
 class _ProductPageState extends State<ProductPage> {
   @override
   Widget build(BuildContext context) {
-    Uint8List imgByte = base64Decode(widget.customer!.imagedata!);
+    // Uint8List imgByte = base64Decode(widget.customer!.imagedata!);
     Size size = MediaQuery.of(context).size;
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: const SystemUiOverlayStyle(
@@ -52,7 +52,7 @@ class _ProductPageState extends State<ProductPage> {
                             height: Sizes.dimen_16.h.toDouble(),
                           ),
                           Text(
-                            'Daftar Produk Tersedia :',
+                            'Daftar Advisor Tersedia :',
                             style: primaryTextFont.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
@@ -100,9 +100,9 @@ class _ProductPageState extends State<ProductPage> {
                               Expanded(
                                 flex: 1,
                                 child: CircleAvatar(
-                                  backgroundColor: widget.customer!.imagedata != '' ? Colors.white : borderGrey,
-                                  backgroundImage: widget.customer!.imagedata != ''
-                                      ? MemoryImage(imgByte)
+                                  backgroundColor: widget.customer!.imageurl != '' ? Colors.white : borderGrey,
+                                  backgroundImage: widget.customer!.imageurl != ''
+                                      ? NetworkImage(widget.customer!.imageurl!)
                                       : const AssetImage(SharedImage.avatar)
                                           as ImageProvider,
                                   radius: size.height.h.toDouble() * 0.04,
@@ -138,7 +138,7 @@ class _ProductPageState extends State<ProductPage> {
                               child: Row(
                                 children: [
                                   Text(
-                                    SharedString.searchProduct,
+                                    SharedString.searchAdvisor,
                                     style: primaryTextFont.copyWith(
                                         fontSize: Sizes.dimen_14.sp.toDouble(),
                                         color: secondaryColor,
@@ -243,7 +243,7 @@ class ItemSearchDelegate extends SearchDelegate {
   ItemSearchDelegate({this.item, this.customer, this.productList, this.branch});
 
   @override
-  String get searchFieldLabel => SharedString.searchProduct;
+  String get searchFieldLabel => SharedString.searchAdvisor;
 
   @override
   List<Widget>? buildActions(BuildContext context) => [
@@ -288,13 +288,13 @@ class ItemSearchDelegate extends SearchDelegate {
         itemBuilder: (context, index) {
           String productName = productList![index].productname!;
           String productDesc = productList![index].productdesc!;
-          String productIcon = productList![index].icon!;
-          Uint8List imgByte = base64Decode(productIcon);
+          String productIcon = productList![index].iconurl!;
+          // Uint8List imgByte = base64Decode(productIcon);
 
           return ListTile(
             leading: productIcon != ''
-                ? Image.memory(
-                    imgByte,
+                ? Image.network(
+                    productIcon,
                     height: Sizes.dimen_24.h.toDouble(),
                   )
                 : Image.asset(

@@ -53,6 +53,7 @@ dependencies:
   device_info_plus: ^4.0.0
   introduction_screen: ^3.0.2
   flutter_rating_bar: ^4.0.0
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

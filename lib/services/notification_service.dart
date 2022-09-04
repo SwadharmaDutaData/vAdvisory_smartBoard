@@ -44,7 +44,7 @@ class NotificationService {
                 'to': token,
               }),
               headers: _mapHeader)
-          .timeout(Duration(seconds: 10));
+          .timeout(Duration(seconds: 120));
     } on TimeoutException catch (e) {
       print('Timeout Error: FCM $e');
     } on SocketException catch (e) {
@@ -76,7 +76,7 @@ class NotificationService {
     print(url);
     try {
       response = await client
-          .put(Uri.parse(url),headers: _mapHeader).timeout(Duration(seconds: 10));
+          .put(Uri.parse(url),headers: _mapHeader).timeout(Duration(seconds: 60));
     } on TimeoutException catch (e) {
       print('Timeout Error: $e');
     } on SocketException catch (e) {

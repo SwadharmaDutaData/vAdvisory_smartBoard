@@ -15,8 +15,13 @@ class RmModel extends Equatable {
     this.createdtime,
     this.rmstatus,
     this.imagedata,
+    this.imageurl,
     this.token,
     this.deviceid,
+    this.rating,
+    this.totalservice,
+    this.advisor,
+    this.rmtype
   });
 
   final int? mrmpk;
@@ -32,8 +37,13 @@ class RmModel extends Equatable {
   final String? createdtime;
   final int? rmstatus;
   final String? imagedata;
+  final String? imageurl;
   final String? token;
   final String? deviceid;
+  final double? rating;
+  final int? totalservice;
+  final String? rmtype;
+  final String? advisor;
 
   RmModel copyWith({
     int? mrmpk,
@@ -49,8 +59,13 @@ class RmModel extends Equatable {
     String? createdtime,
     int? rmstatus,
     String? imagedata,
+    String? imageurl,
     String? token,
     String? deviceid,
+    double? rating,
+    int? totalservice,
+    String? rmtype,
+    String? advisor,
   }) =>
       RmModel(
         mrmpk: mrmpk ?? this.mrmpk,
@@ -66,8 +81,13 @@ class RmModel extends Equatable {
         createdtime: createdtime ?? this.createdtime,
         rmstatus: rmstatus ?? this.rmstatus,
         imagedata: imagedata ?? this.imagedata,
+        imageurl: imageurl ?? this.imageurl,
         token: token ?? this.token,
         deviceid: deviceid ?? this.deviceid,
+        rating: rating ?? this.rating,
+        totalservice: totalservice ?? this.totalservice,
+        rmtype: rmtype ?? this.rmtype,
+        advisor: advisor ?? this.advisor,
       );
 
   factory RmModel.fromJson(Map<String, dynamic> json) =>
@@ -90,8 +110,13 @@ class RmModel extends Equatable {
         createdtime: json['createdtime']?.trim() ?? '',
         rmstatus: json['rmstatus'] ?? 0,
         imagedata: json['imagedata']?.trim() ?? '',
+        imageurl: json['imageurl']?.trim() ?? '',
         token: json['token']?.trim() ?? '',
         deviceid: json['deviceid']?.trim() ?? '',
+        rmtype: json['rmtype']?.trim() ?? '',
+        advisor: json['advisor']?.trim() ?? '',
+        rating: json['rating'] ?? 0.0,
+        totalservice: json['totalservice'] ?? 0,
       );
 
   Map<String, dynamic> toJson() => {
@@ -103,34 +128,43 @@ class RmModel extends Equatable {
     "rmname": rmname,
     "nohp": nohp,
     "email": email,
-    "mbranch": mbranch,
     "updatedby": updatedby,
     "lastupdated": lastupdated,
     "createdtime": createdtime,
     "rmstatus": rmstatus,
     "imagedata": imagedata,
+    "imageurl": imageurl,
     "token": token,
     "deviceid": deviceid,
+    "rating": rating,
+    "totalservice": totalservice,
+    "rmtype": rmtype,
+    "advisor": advisor,
   };
 
   @override
   // TODO: implement props
   List<Object?> get props =>
       [
-        mrmpk!,
-        mbranch!,
-        mproduct!,
-        mlevel!,
-        npp!,
-        rmname!,
-        nohp!,
-        email!,
-        updatedby!,
-        lastupdated!,
-        createdtime!,
-        rmstatus!,
+        mrmpk,
+        mbranch,
+        mproduct,
+        mlevel,
+        npp,
+        rmname,
+        nohp,
+        email,
+        updatedby,
+        lastupdated,
+        createdtime,
+        rmstatus,
         imagedata,
+        imageurl,
         token,
         deviceid,
+        rating,
+        totalservice,
+        rmtype,
+        advisor,
       ];
 }

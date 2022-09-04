@@ -16,7 +16,7 @@ class BookingServices {
     try {
       response = await client
           .get(Uri.parse(url), headers: _mapHeader)
-          .timeout(Duration(seconds: 10));
+          .timeout(Duration(seconds: 60));
     } on TimeoutException catch (e) {
       print('Timeout Error: $e');
     } on SocketException catch (e) {
@@ -53,7 +53,7 @@ class BookingServices {
     try {
       response = await client
           .get(Uri.parse(url), headers: _mapHeader)
-          .timeout(Duration(seconds: 10));
+          .timeout(Duration(seconds: 60));
     } on TimeoutException catch (e) {
       print('Timeout Error: $e');
     } on SocketException catch (e) {
@@ -89,7 +89,7 @@ class BookingServices {
     try {
       response = await client
           .get(Uri.parse(url), headers: _mapHeader)
-          .timeout(Duration(seconds: 10));
+          .timeout(Duration(seconds: 60));
     } on TimeoutException catch (e) {
       print('Timeout Error: $e');
     } on SocketException catch (e) {
@@ -157,7 +157,7 @@ class BookingServices {
             },
           }),
           headers: _mapHeader)
-          .timeout(const Duration(seconds: 20));
+          .timeout(const Duration(seconds: 120));
     } on TimeoutException catch (e) {
       print('Timeout Error: $e');
     } on SocketException catch (e) {
