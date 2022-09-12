@@ -110,12 +110,26 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                              'Selamat Datang Nasabah Prioritas\n${advisoryDetail!.mcust!.custname!.capitalize}',
+                              'Selamat Datang Nasabah Prioritas',
                               style: primaryTextFont.copyWith(
                                   color: secondaryColor,
                                   fontWeight: FontWeight.w600,
                                   fontSize: Sizes.dimen_40.sp.toDouble()),
                             ),
+                          SizedBox(
+                            width: size.width * 0.5,
+                            child: AutoSizeText(
+                              advisoryDetail!.mcust!.custname!.capitalize!,
+                              textAlign: TextAlign.end,
+                              presetFontSizes: [Sizes.dimen_56.sp.toDouble(), Sizes.dimen_50.sp.toDouble(), Sizes.dimen_45.sp.toDouble()],
+                              maxLines: 2,
+                              style: primaryTextFont.copyWith(
+                                  color: mainColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: Sizes.dimen_56.sp.toDouble()),
+                            ),
+                          ),
+                          SizedBox(height: Sizes.dimen_8.h.toDouble(),),
                           ElevatedButton(
                             onPressed: () {
                               ProductModel? product = advisoryDetail!.mproduct;

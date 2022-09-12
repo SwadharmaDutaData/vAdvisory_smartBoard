@@ -37,7 +37,7 @@ class _RmCardWidgetState extends State<RmCardWidget> {
                       Expanded(
                         flex: 3,
                         child:
-                            widget.item!.imagedata != ''
+                            widget.item!.imageurl != ''
                         ? Center(
                           child: Container(
                             decoration: BoxDecoration(
