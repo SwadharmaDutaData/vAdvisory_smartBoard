@@ -36,7 +36,10 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                 children: [
                     widget.item.iconurl != ''
                         ? Center(
-                      child: Image.network(widget.item.iconurl!, height: size.height.h.toDouble() * 0.2,)
+                      child: Image.network(widget.item.iconurl!, height: size.height.h.toDouble() * 0.2, errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                        print('failed to load image: $exception');
+                        return Image.asset('assets/images/produk_bni.png', height: size.height * 0.2,); // Gambar default
+                      },)
                       )
                      : Center(child: Image.asset('assets/images/produk_bni.png', height: size.height.h.toDouble() * 0.2,),),
                   SizedBox(

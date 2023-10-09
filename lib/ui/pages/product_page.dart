@@ -52,7 +52,7 @@ class _ProductPageState extends State<ProductPage> {
                             height: Sizes.dimen_16.h.toDouble(),
                           ),
                           Text(
-                            'Daftar Advisor Tersedia :',
+                            'Available Products :',
                             style: primaryTextFont.copyWith(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w700,
@@ -85,7 +85,7 @@ class _ProductPageState extends State<ProductPage> {
                                           fontWeight: FontWeight.w600,),
                                     ),
                                     Text(
-                                      'Nasabah Prioritas',
+                                      'Customers',
                                       textAlign: TextAlign.end,
                                       style: primaryTextFont.copyWith(
                                           color: darkGrey,
@@ -138,7 +138,7 @@ class _ProductPageState extends State<ProductPage> {
                               child: Row(
                                 children: [
                                   Text(
-                                    SharedString.searchAdvisor,
+                                    SharedString.searchProduct,
                                     style: primaryTextFont.copyWith(
                                         fontSize: Sizes.dimen_14.sp.toDouble(),
                                         color: secondaryColor,
@@ -243,7 +243,7 @@ class ItemSearchDelegate extends SearchDelegate {
   ItemSearchDelegate({this.item, this.customer, this.productList, this.branch});
 
   @override
-  String get searchFieldLabel => SharedString.searchAdvisor;
+  String get searchFieldLabel => SharedString.searchProduct;
 
   @override
   List<Widget>? buildActions(BuildContext context) => [
@@ -296,6 +296,10 @@ class ItemSearchDelegate extends SearchDelegate {
                 ? Image.network(
                     productIcon,
                     height: Sizes.dimen_24.h.toDouble(),
+              errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                print('failed to load image: $exception');
+                return Image.asset('assets/images/produk_bni.png', height: Sizes.dimen_24.h.toDouble(),); // Gambar default
+              },
                   )
                 : Image.asset(
                     'assets/images/produk_bni.png',

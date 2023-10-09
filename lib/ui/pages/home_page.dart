@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                              'Selamat Datang Nasabah Prioritas',
+                              'Welcome to Virtual Advisory',
                               style: primaryTextFont.copyWith(
                                   color: secondaryColor,
                                   fontWeight: FontWeight.w600,

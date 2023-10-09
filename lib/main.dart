@@ -78,7 +78,9 @@ class MyApp extends StatelessWidget {
         // const LoginPage(),
         // const WelcomePage(),
         theme: ThemeData(
-          accentColor: thirdColor,
+            colorScheme: ColorScheme.fromSwatch().copyWith(
+              secondary: thirdColor, // Your accent color
+            ),
             primaryColor: borderGrey,
             primarySwatch: MaterialColor(0xFF006181, color)),
         debugShowCheckedModeBanner: false,

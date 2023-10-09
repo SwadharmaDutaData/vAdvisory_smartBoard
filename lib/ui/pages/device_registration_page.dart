@@ -92,7 +92,7 @@ class _DeviceRegistrationPageState extends State<DeviceRegistrationPage> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text('Registrasi'.toUpperCase(), style: primaryTextFont.copyWith(color: Colors.white, fontSize: Sizes.dimen_20, fontWeight: FontWeight.w600),),
+                          Text('Registration'.toUpperCase(), style: primaryTextFont.copyWith(color: Colors.white, fontSize: Sizes.dimen_20, fontWeight: FontWeight.w600),),
                           SizedBox(height: Sizes.dimen_8,),
                           ///Lokasi
                           Column(
@@ -120,7 +120,7 @@ class _DeviceRegistrationPageState extends State<DeviceRegistrationPage> {
                                     isExpanded: true,
                                     underline: const SizedBox(),
                                     hint: Text(
-                                      'Pilih ${SharedString.region} ...',
+                                      'Select ${SharedString.region} ...',
                                       style: primaryTextFont.copyWith(
                                           color: thirdColor,
                                           fontSize: Sizes.dimen_14,
@@ -176,7 +176,7 @@ class _DeviceRegistrationPageState extends State<DeviceRegistrationPage> {
                                   underline: const SizedBox(),
                                   hint: Text(
                                     selectedRegion == null && branchList.isEmpty ? '----------' :
-                                    branchList.isEmpty? SharedString.nobranch : 'Pilih ${SharedString.branch} ...',
+                                    branchList.isEmpty? SharedString.nobranch : 'Select ${SharedString.branch} ...',
                                     style: primaryTextFont.copyWith(
                                         color: branchList.isEmpty? deepGrey : thirdColor,
                                         fontSize: Sizes.dimen_14,
@@ -258,7 +258,7 @@ class _DeviceRegistrationPageState extends State<DeviceRegistrationPage> {
         });
         log('check branchx $selectedBranch');
         Fluttertoast.showToast(
-            msg: 'Perangkat berhasil didaftarkan',
+            msg: 'Device Registered Successfully',
             backgroundColor: statusOkColor,
             gravity: ToastGravity.BOTTOM);
         Get.offAll(HomePage());

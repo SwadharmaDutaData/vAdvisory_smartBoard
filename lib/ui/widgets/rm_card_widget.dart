@@ -44,6 +44,7 @@ class _RmCardWidgetState extends State<RmCardWidget> {
                               image: DecorationImage(
                                 // image: MemoryImage(imgByte),
                                 image: NetworkImage(widget.item!.imageurl!),
+                                  onError:(error, stackTrace) => AssetImage('assets/images/advisors.png'),
                                 fit: BoxFit.cover
                               ),
                               borderRadius: const BorderRadius.only(
@@ -70,9 +71,10 @@ class _RmCardWidgetState extends State<RmCardWidget> {
                         flex: 1,
                         child: Column(
                           children: [
-                            Text(
+                            AutoSizeText(
                                 widget.item!.rmname!,
                                 textAlign: TextAlign.center,
+                                maxLines: 1,
                                 style: primaryTextFont.copyWith(
                                     color: widget.item! != 0
                                         ? mainColor
@@ -112,14 +114,23 @@ class _RmCardWidgetState extends State<RmCardWidget> {
           Positioned(
             right: Sizes.dimen_6.w.toDouble(),
             top: Sizes.dimen_14.h.toDouble(),
-            child: Badge(
-              alignment: Alignment.center,
-              toAnimate: true,
-              animationDuration: const Duration(milliseconds: 1500),
-              shape: BadgeShape.square,
-              badgeColor: mainColor,
-              borderRadius:
-                  const BorderRadius.only(bottomLeft: Radius.circular(Sizes.dimen_8)),
+            child: badges.Badge(
+              // alignment: Alignment.center,
+              // toAnimate: true,
+              // animationDuration: const Duration(milliseconds: 1500),
+              badgeStyle: badges.BadgeStyle(
+                shape: badges.BadgeShape.square,
+                badgeColor: mainColor,
+                padding: EdgeInsets.all(5),
+                borderRadius: BorderRadius.circular(Sizes.dimen_8),
+                elevation: 0,
+              ),
+              badgeAnimation: badges.BadgeAnimation.slide(
+                animationDuration: Duration(seconds: 1),
+                colorChangeAnimationDuration: Duration(seconds: 1),
+                loopAnimation: false,
+                colorChangeAnimationCurve: Curves.easeInCubic,
+              ),
               badgeContent: Row(
                 children: [
                   Icon(Icons.circle, size: Sizes.dimen_8.sp.toDouble(), color: widget.item!.rmstatus! == 1

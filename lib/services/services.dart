@@ -15,4 +15,4 @@ part 'registration_service.dart';
 
 // String baseURL = 'http://10.12.4.163:8086/';
 // String baseURL = 'http://ruangjuang.sdd.co.id:6062/'; //master
-String baseURL = 'http://ruangjuang.sdd.co.id:6063/';
+String baseURL = 'http://ruangjuang.sdd.co.id:6064/';

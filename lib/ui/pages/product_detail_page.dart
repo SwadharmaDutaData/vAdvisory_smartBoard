@@ -114,7 +114,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                                               fontWeight: FontWeight.w600,),
                                         ),
                                         Text(
-                                          'Nasabah Prioritas',
+                                          'Customers',
                                           textAlign: TextAlign.end,
                                           style: primaryTextFont.copyWith(
                                               color: darkGrey, fontSize: Sizes.dimen_16.sp.toDouble()),
@@ -315,7 +315,6 @@ class _ItemSearchDelegate extends SearchDelegate {
         itemCount: list.length,
         itemBuilder: (context, index) {
           String rmName = rmList![index].rmname!;
-
           return ListTile(
             leading: Image.asset(
               'assets/images/rm_icon.png',
